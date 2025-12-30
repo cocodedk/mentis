@@ -1,64 +1,73 @@
-# Mentis.dk - Website Redesign
+# React + TypeScript + Vite
 
-Modern redesign of Mentis Neuropsykiatrisk Klinik website - a Danish neuropsychiatric clinic.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Tech Stack
+Currently, two official plugins are available:
 
-- **React** + **TypeScript** - UI framework
-- **Vite** - Build tool and dev server
-- **Tailwind CSS** - Styling
-- **Node.js** - Runtime
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Design Principles
+## React Compiler
 
-Calm · Human · Clinical · Trust · Clarity · Accessibility
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Project Status
+## Expanding the ESLint configuration
 
-🚧 **In Planning Phase**
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-See [Implementation Plan](./docs/05-implementation-plan.md) for detailed roadmap.
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-## Documentation
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-- [Current Site Analysis](./docs/00-current-site.md)
-- [Improvement & Redesign Strategy](./docs/01-improvement-redesign.md)
-- [Wireframe Sketches](./docs/02-wireframe-schetches.md)
-- [Color System](./docs/03-color-system.md)
-- [Figma File System](./docs/04-figma-file-system.md)
-- [Implementation Plan](./docs/05-implementation-plan.md)
-
-## Getting Started
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-## Color System
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-- **Primary**: `#1F4E5F` (Deep desaturated teal-blue)
-- **Accent**: `#5FA8A1` (Muted green-teal)
-- **Neutral 100**: `#FAFAFA` (Off-white)
-- **Neutral 200**: `#F2F6F8` (Light blue-grey)
-- **Neutral 600**: `#5B6B73` (Secondary text)
-- **Neutral 900**: `#1E2930` (Primary text)
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-## Accessibility
-
-This project follows WCAG AA standards for accessibility, ensuring:
-- Minimum contrast ratios (4.5:1 for text, 3:1 for buttons)
-- Keyboard navigation support
-- Screen reader compatibility
-- Focus states for all interactive elements
-
-## License
-
-Private project for Mentis Neuropsykiatrisk Klinik
-
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```

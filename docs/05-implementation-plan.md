@@ -254,4 +254,3 @@ mentis/
 4. Build core components
 5. Implement homepage
 6. Build remaining pages incrementally
-
