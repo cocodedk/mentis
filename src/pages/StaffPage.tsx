@@ -4,7 +4,7 @@ import { Grid, Container, Section } from '@/components/layout'
 import { StaffCard } from '@/components/sections/StaffCard'
 import { StaffDetail } from '@/components/sections/StaffDetail'
 import { staffMembers } from '@/data/staff'
-import { StaffMember } from '@/data/staff'
+import type { StaffMember } from '@/data/staff'
 
 /**
  * Staff overview page

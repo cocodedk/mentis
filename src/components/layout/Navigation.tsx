@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { NavigationItem } from '@/types/components'
+import type { NavigationItem } from '@/types/components'
 import { Dropdown } from './Dropdown'
 
 interface NavigationProps {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { NavigationItem } from '@/types/components'
+import type { NavigationItem } from '@/types/components'
 
 interface MobileMenuProps {
   isOpen: boolean

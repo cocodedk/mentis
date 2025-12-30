@@ -1,4 +1,4 @@
-import { StaffMember } from '@/data/staff'
+import type { StaffMember } from '@/data/staff'
 
 /**
  * Staff detail content for modal

@@ -1,5 +1,5 @@
 import { Card } from '@/components/ui'
-import { StaffMember } from '@/data/staff'
+import type { StaffMember } from '@/data/staff'
 
 interface StaffCardProps {
   staff: StaffMember

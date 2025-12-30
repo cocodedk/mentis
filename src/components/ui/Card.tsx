@@ -1,5 +1,5 @@
-import { ReactNode, HTMLAttributes } from 'react'
-import { CardVariant } from '@/types/components'
+import type { ReactNode, HTMLAttributes } from 'react'
+import type { CardVariant } from '@/types/components'
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   variant?: CardVariant

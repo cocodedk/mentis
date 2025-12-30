@@ -28,7 +28,7 @@ export function Hero({
 }: HeroProps) {
   return (
     <section
-      className="relative min-h-[500px] flex items-center justify-center bg-neutral-200"
+      className="relative min-h-[500px] flex items-center justify-center bg-primary-500"
       style={
         backgroundImage
           ? {

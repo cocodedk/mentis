@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react'
+import type { CookiePreferences } from '@/utils/cookies'
 import {
   getCookieConsent,
   saveCookieConsent,
   hasCookieConsent,
-  CookiePreferences,
 } from '@/utils/cookies'
 
 /**

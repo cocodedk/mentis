@@ -1,5 +1,5 @@
-import { ReactNode } from 'react'
-import { AlertVariant } from '@/types/components'
+import type { ReactNode } from 'react'
+import type { AlertVariant } from '@/types/components'
 
 interface AlertProps {
   variant?: AlertVariant

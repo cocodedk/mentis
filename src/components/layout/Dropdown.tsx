@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { DropdownItem } from '@/types/components'
+import type { DropdownItem } from '@/types/components'
 
 interface DropdownProps {
   label: string

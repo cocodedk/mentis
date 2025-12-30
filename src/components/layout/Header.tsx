@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { NavigationItem } from '@/types/components'
+import type { NavigationItem } from '@/types/components'
 import { Button } from '@/components/ui'
 import { Navigation } from './Navigation'
 import { MobileMenu } from './MobileMenu'

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CookiePreferences } from '@/utils/cookies'
+import type { CookiePreferences } from '@/utils/cookies'
 import { Button } from '@/components/ui'
 import { Modal } from '@/components/ui'
 

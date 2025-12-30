@@ -104,9 +104,12 @@ function AppContent() {
 }
 
 function App() {
+  // Get base path from Vite (set via BASE_URL env var or defaults to '/')
+  const basePath = import.meta.env.BASE_URL || '/'
+
   return (
     <ErrorBoundary>
-      <BrowserRouter>
+      <BrowserRouter basename={basePath}>
         <AppContent />
       </BrowserRouter>
     </ErrorBoundary>
