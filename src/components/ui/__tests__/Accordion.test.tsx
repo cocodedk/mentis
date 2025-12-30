@@ -12,8 +12,10 @@ describe('Accordion', () => {
   it('hides content initially', () => {
     render(<Accordion title="Test Title">Hidden content</Accordion>)
     const content = screen.queryByText('Hidden content')
-    // Content might be in DOM but hidden, or not rendered at all
-    expect(content === null || !content.classList.contains('block')).toBe(true)
+    // Content is in DOM but hidden with max-h-0 and opacity-0
+    expect(content).toBeInTheDocument()
+    expect(content?.parentElement?.className).toContain('max-h-0')
+    expect(content?.parentElement?.className).toContain('opacity-0')
   })
 
   it('shows content when opened', async () => {
@@ -29,16 +31,20 @@ describe('Accordion', () => {
     render(<Accordion title="Test Title">Content</Accordion>)
 
     const button = screen.getByRole('button', { name: 'Test Title' })
+    const contentContainer = screen.getByText('Content').parentElement
+
+    // Initially closed
+    expect(contentContainer?.className).toContain('max-h-0')
 
     // Open
     await userEvent.click(button)
-    const content = screen.getByText('Content')
-    expect(content).toBeInTheDocument()
+    expect(contentContainer?.className).toContain('max-h-[2000px]')
+    expect(contentContainer?.className).toContain('opacity-100')
 
     // Close
     await userEvent.click(button)
-    // Content might still be in DOM but hidden
-    expect(content).toBeInTheDocument()
+    expect(contentContainer?.className).toContain('max-h-0')
+    expect(contentContainer?.className).toContain('opacity-0')
   })
 
   it('has correct ARIA attributes', () => {

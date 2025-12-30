@@ -1,10 +1,11 @@
-import { useState, ReactNode } from 'react'
+import { useState, useId, ReactNode } from 'react'
 
 interface AccordionProps {
   title: string
   children: ReactNode
   defaultOpen?: boolean
   onToggle?: (isOpen: boolean) => void
+  id?: string
 }
 
 /**
@@ -23,9 +24,11 @@ export function Accordion({
   children,
   defaultOpen = false,
   onToggle,
+  id,
 }: AccordionProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
-  const accordionId = `accordion-${title.toLowerCase().replace(/\s+/g, '-')}`
+  const generatedId = useId()
+  const accordionId = id || `accordion-${generatedId}`
   const contentId = `${accordionId}-content`
 
   const handleToggle = () => {

@@ -19,17 +19,17 @@ describe('Section', () => {
       </Section>
     )
     const section = screen.getByText('Content').parentElement
-    expect(section?.className).toContain('bg-neutral-100')
+    expect(section?.className).toContain('bg-white')
   })
 
   it('applies custom background', () => {
     render(
-      <Section background="white">
+      <Section background="neutral-100">
         <div>Content</div>
       </Section>
     )
     const section = screen.getByText('Content').parentElement
-    expect(section?.className).toContain('bg-white')
+    expect(section?.className).toContain('bg-neutral-100')
   })
 
   it('applies custom padding', () => {

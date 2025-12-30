@@ -30,8 +30,8 @@ export function Card({
 
   const variantStyles = {
     default: 'p-6',
-    treatment: 'p-6 hover:shadow-md cursor-pointer',
-    staff: 'p-6 hover:shadow-md cursor-pointer',
+    treatment: 'p-6',
+    staff: 'p-6',
     pricing: 'p-6 border border-neutral-200',
     info: 'p-6 bg-neutral-200',
   }

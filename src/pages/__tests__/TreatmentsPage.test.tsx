@@ -5,12 +5,14 @@ import { TreatmentsPage } from '../TreatmentsPage'
 describe('TreatmentsPage', () => {
   it('renders page title', () => {
     render(<TreatmentsPage />)
-    expect(screen.getByRole('main')).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: /behandlinger/i })
+    ).toBeInTheDocument()
   })
 
   it('renders treatment cards', () => {
     render(<TreatmentsPage />)
-    // Treatment cards should be rendered
-    expect(screen.getByRole('main')).toBeInTheDocument()
+    // Treatment cards should be rendered - check for treatment titles
+    expect(screen.getByText(/TMS/i)).toBeInTheDocument()
   })
 })

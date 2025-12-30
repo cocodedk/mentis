@@ -35,10 +35,18 @@ describe('CookieSettings', () => {
       />
     )
 
-    expect(screen.getByText(/nødvendige cookies/i)).toBeInTheDocument()
-    expect(screen.getByText(/funktionelle cookies/i)).toBeInTheDocument()
-    expect(screen.getByText(/statistiske cookies/i)).toBeInTheDocument()
-    expect(screen.getByText(/marketing cookies/i)).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: /nødvendige cookies/i })
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: /funktionelle cookies/i })
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: /statistiske cookies/i })
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: /marketing cookies/i })
+    ).toBeInTheDocument()
   })
 
   it('disables necessary cookies checkbox', () => {

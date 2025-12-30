@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 /**
  * Footer component with 4-column layout
  * Responsive: stacks on mobile
@@ -50,28 +52,28 @@ export function Footer() {
             <h3 className="text-h3 font-semibold mb-4">Praktisk info</h3>
             <ul className="space-y-2 text-body text-neutral-300">
               <li>
-                <a
-                  href="/praktisk-information/afbud"
+                <Link
+                  to="/praktisk-information/afbud"
                   className="hover:text-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 transition-colors"
                 >
                   Afbud
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/praktisk-information/tolkebistand"
+                <Link
+                  to="/praktisk-information/tolkebistand"
                   className="hover:text-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 transition-colors"
                 >
                   Tolkebistand
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/praktisk-information/akut-hjaelp"
+                <Link
+                  to="/praktisk-information/akut-hjaelp"
                   className="hover:text-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 transition-colors"
                 >
                   Akut hjælp
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -80,20 +82,20 @@ export function Footer() {
             <h3 className="text-h3 font-semibold mb-4">Juridisk</h3>
             <ul className="space-y-2 text-body text-neutral-300">
               <li>
-                <a
-                  href="/praktisk-information/privatlivspolitik"
+                <Link
+                  to="/praktisk-information/privatlivspolitik"
                   className="hover:text-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 transition-colors"
                 >
                   Privatlivspolitik
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/praktisk-information/cookiepolitik"
+                <Link
+                  to="/praktisk-information/cookiepolitik"
                   className="hover:text-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 transition-colors"
                 >
                   Cookiepolitik
-                </a>
+                </Link>
               </li>
               <li className="pt-4 text-body-sm text-neutral-400">
                 CVR: 38744429

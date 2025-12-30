@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import { Header, Footer } from '@/components/layout'
 import {
   SkipLink,
@@ -51,9 +51,10 @@ const NotFound = lazy(() =>
 
 function AppContent() {
   const location = useLocation()
+  const navigate = useNavigate()
 
   const handleNavigate = (path: string) => {
-    window.location.href = path
+    navigate(path)
   }
 
   return (

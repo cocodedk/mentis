@@ -3,6 +3,13 @@
 # Hook script that prompts the agent to follow the refactor command guidance
 # This hook is called when the agent loop ends
 
+# Check if jq is installed
+if ! command -v jq >/dev/null 2>&1; then
+  echo "Error: jq is required but not installed. Please install jq to use this hook." >&2
+  echo "Installation: sudo apt-get install jq (Ubuntu/Debian) or brew install jq (macOS)" >&2
+  exit 1
+fi
+
 # Read JSON input from stdin
 input=$(cat)
 

@@ -11,34 +11,38 @@ describe('Alert', () => {
 
   it('applies info variant styles', () => {
     render(<Alert variant="info">Info message</Alert>)
-    const alert = screen.getByText('Info message').closest('[role="alert"]')
+    const alert = screen.getByRole('status')
     expect(alert).toBeInTheDocument()
+    expect(alert.className).toContain('bg-neutral-200')
   })
 
   it('applies warning variant styles', () => {
     render(<Alert variant="warning">Warning message</Alert>)
-    const alert = screen.getByText('Warning message').closest('[role="alert"]')
+    const alert = screen.getByRole('alert')
     expect(alert).toBeInTheDocument()
+    expect(alert.className).toContain('bg-yellow-50')
   })
 
-  it('shows dismiss button when onDismiss is provided', () => {
+  it('shows dismiss button when onClose is provided', () => {
     const handleDismiss = vi.fn()
-    render(<Alert variant="info" onDismiss={handleDismiss}>Message</Alert>)
+    render(<Alert variant="info" onClose={handleDismiss}>Message</Alert>)
 
-    expect(screen.getByRole('button', { name: /close/i })).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: /close alert/i })
+    ).toBeInTheDocument()
   })
 
-  it('calls onDismiss when dismiss button is clicked', async () => {
+  it('calls onClose when dismiss button is clicked', async () => {
     const handleDismiss = vi.fn()
-    render(<Alert variant="info" onDismiss={handleDismiss}>Message</Alert>)
+    render(<Alert variant="info" onClose={handleDismiss}>Message</Alert>)
 
-    const dismissButton = screen.getByRole('button', { name: /close/i })
+    const dismissButton = screen.getByRole('button', { name: /close alert/i })
     await userEvent.click(dismissButton)
 
     expect(handleDismiss).toHaveBeenCalledTimes(1)
   })
 
-  it('does not show dismiss button when onDismiss is not provided', () => {
+  it('does not show dismiss button when onClose is not provided', () => {
     render(<Alert variant="info">Message</Alert>)
 
     expect(screen.queryByRole('button')).not.toBeInTheDocument()
@@ -46,7 +50,11 @@ describe('Alert', () => {
 
   it('has correct ARIA role', () => {
     render(<Alert variant="info">Message</Alert>)
-    const alert = screen.getByRole('alert')
+    const alert = screen.getByRole('status')
     expect(alert).toBeInTheDocument()
+
+    render(<Alert variant="warning">Warning</Alert>)
+    const warningAlert = screen.getByRole('alert')
+    expect(warningAlert).toBeInTheDocument()
   })
 })

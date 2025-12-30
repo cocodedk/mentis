@@ -71,7 +71,7 @@ describe('accessibility', () => {
   })
 
   describe('announceToScreenReader', () => {
-    it('creates and removes announcement element', () => {
+    it('creates and removes announcement element', async () => {
       const initialLength = document.body.children.length
       announceToScreenReader('Test announcement')
 
@@ -80,17 +80,17 @@ describe('accessibility', () => {
       expect(announcements.length).toBeGreaterThan(0)
 
       // Wait for cleanup (1 second timeout in implementation)
-      setTimeout(() => {
-        const afterCleanup = document.querySelectorAll('[role="status"]')
-        expect(afterCleanup.length).toBe(0)
-      }, 1100)
+      await new Promise((resolve) => setTimeout(resolve, 1100))
+      const afterCleanup = document.querySelectorAll('[role="status"]')
+      expect(afterCleanup.length).toBe(0)
     })
 
   it('uses correct ARIA attributes', async () => {
     announceToScreenReader('Test', 'assertive')
     // Wait a bit for the element to be created
-    await new Promise((resolve) => setTimeout(resolve, 150))
-    const announcement = document.querySelector('[role="status"]')
+    await new Promise((resolve) => setTimeout(resolve, 10))
+    const announcement = document.querySelector('[role="status"][aria-live="assertive"]')
+    expect(announcement).toBeTruthy()
     expect(announcement?.getAttribute('aria-live')).toBe('assertive')
     expect(announcement?.getAttribute('aria-atomic')).toBe('true')
   })

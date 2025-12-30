@@ -1,1 +1,1 @@
-run @run-tests.sh
+run @run-test.sh

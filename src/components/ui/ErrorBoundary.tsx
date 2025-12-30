@@ -81,8 +81,8 @@ export class ErrorBoundary extends Component<
                     Tekniske detaljer (kun i udvikling)
                   </summary>
                   <pre className="mt-4 p-4 bg-neutral-200 rounded text-body-sm text-neutral-900 overflow-auto">
-                    {this.state.error.toString()}
-                    {this.state.error.stack}
+                    {this.state.error ? this.state.error.toString() : 'Unknown error'}
+                    {this.state.error?.stack ? `\n\n${this.state.error.stack}` : ''}
                   </pre>
                 </details>
               )}

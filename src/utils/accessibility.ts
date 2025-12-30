@@ -3,19 +3,23 @@
  */
 
 /**
+ * CSS selector string for focusable elements
+ * Used by both isFocusable and getFocusableElements to ensure consistency
+ */
+export const FOCUSABLE_SELECTORS = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(', ')
+
+/**
  * Check if an element is focusable
  */
 export function isFocusable(element: HTMLElement): boolean {
-  const focusableSelectors = [
-    'a[href]',
-    'button:not([disabled])',
-    'input:not([disabled])',
-    'select:not([disabled])',
-    'textarea:not([disabled])',
-    '[tabindex]:not([tabindex="-1"])',
-  ].join(', ')
-
-  return element.matches(focusableSelectors)
+  return element.matches(FOCUSABLE_SELECTORS)
 }
 
 /**
@@ -24,16 +28,7 @@ export function isFocusable(element: HTMLElement): boolean {
 export function getFocusableElements(
   container: HTMLElement
 ): HTMLElement[] {
-  const focusableSelectors = [
-    'a[href]',
-    'button:not([disabled])',
-    'input:not([disabled])',
-    'select:not([disabled])',
-    'textarea:not([disabled])',
-    '[tabindex]:not([tabindex="-1"])',
-  ].join(', ')
-
-  return Array.from(container.querySelectorAll(focusableSelectors))
+  return Array.from(container.querySelectorAll(FOCUSABLE_SELECTORS))
 }
 
 /**

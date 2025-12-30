@@ -22,7 +22,7 @@ export function LazyImage({
   const [hasError, setHasError] = useState(false)
 
   return (
-    <div ref={ref as React.RefObject<HTMLDivElement>} className={className}>
+    <div ref={ref as React.RefObject<HTMLDivElement>} className={`relative ${className}`}>
       {!isIntersecting ? (
         <div
           className="bg-neutral-200 animate-pulse w-full h-full"

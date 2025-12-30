@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, forwardRef } from 'react'
+import { InputHTMLAttributes, forwardRef, useId } from 'react'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string
@@ -35,7 +35,28 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const inputId = id || `input-${label.toLowerCase().replace(/\s+/g, '-')}`
+    const generatedId = useId()
+    const sanitizeLabel = (label: string): string => {
+      // Normalize: toLowerCase and Unicode NFKD to strip accents
+      let normalized = label
+        .toLowerCase()
+        .normalize('NFKD')
+        .replace(/[\u0300-\u036f]/g, '')
+
+      // Replace non-alphanumeric with hyphens
+      normalized = normalized.replace(/[^a-z0-9]+/g, '-')
+
+      // Collapse consecutive hyphens
+      normalized = normalized.replace(/-+/g, '-')
+
+      // Trim leading/trailing hyphens
+      normalized = normalized.replace(/^-+|-+$/g, '')
+
+      return normalized || 'input'
+    }
+
+    const baseId = id || `input-${sanitizeLabel(label)}-${generatedId.replace(/:/g, '-')}`
+    const inputId = baseId
     const errorId = error ? `${inputId}-error` : undefined
     const helperId = helperText ? `${inputId}-helper` : undefined
 

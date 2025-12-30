@@ -18,7 +18,9 @@ describe('CookieBanner', () => {
 
   it('renders when no consent is given', () => {
     render(<CookieBanner />)
-    expect(screen.getByText(/vi bruger cookies/i)).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: /vi bruger cookies/i })
+    ).toBeInTheDocument()
   })
 
   it('does not render when consent is given', () => {

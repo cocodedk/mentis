@@ -69,10 +69,10 @@ describe('Modal', () => {
 
     // Find backdrop (the element with aria-hidden="true")
     const backdrop = document.querySelector('[aria-hidden="true"]')
-    if (backdrop) {
-      await userEvent.click(backdrop)
-      expect(handleClose).toHaveBeenCalledTimes(1)
-    }
+    expect(backdrop).toBeInTheDocument()
+
+    await userEvent.click(backdrop as Element)
+    expect(handleClose).toHaveBeenCalledTimes(1)
   })
 
   it('has correct ARIA attributes', () => {

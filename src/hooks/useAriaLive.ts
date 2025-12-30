@@ -10,9 +10,8 @@ export function useAriaLive(
 ) {
   const liveRegionRef = useRef<HTMLDivElement | null>(null)
 
+  // Create live region once on mount, remove on unmount
   useEffect(() => {
-    if (!message) return
-
     if (!liveRegionRef.current) {
       const liveRegion = document.createElement('div')
       liveRegion.setAttribute('role', 'status')
@@ -23,6 +22,25 @@ export function useAriaLive(
       liveRegionRef.current = liveRegion
     }
 
+    return () => {
+      if (liveRegionRef.current && liveRegionRef.current.parentNode) {
+        liveRegionRef.current.parentNode.removeChild(liveRegionRef.current)
+        liveRegionRef.current = null
+      }
+    }
+  }, [])
+
+  // Update aria-live attribute when priority changes
+  useEffect(() => {
+    if (liveRegionRef.current) {
+      liveRegionRef.current.setAttribute('aria-live', priority)
+    }
+  }, [priority])
+
+  // Update textContent when message changes
+  useEffect(() => {
+    if (!message) return
+
     const timer = setTimeout(() => {
       if (liveRegionRef.current) {
         liveRegionRef.current.textContent = message
@@ -31,12 +49,8 @@ export function useAriaLive(
 
     return () => {
       clearTimeout(timer)
-      if (liveRegionRef.current && liveRegionRef.current.parentNode) {
-        liveRegionRef.current.parentNode.removeChild(liveRegionRef.current)
-        liveRegionRef.current = null
-      }
     }
-  }, [message, priority])
+  }, [message])
 
   return liveRegionRef
 }

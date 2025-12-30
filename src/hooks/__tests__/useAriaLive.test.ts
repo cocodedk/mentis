@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { renderHook } from '@testing-library/react'
+import { describe, it, expect, beforeEach } from 'vitest'
+import { renderHook, waitFor } from '@testing-library/react'
 import { useAriaLive } from '../useAriaLive'
 
 describe('useAriaLive', () => {
@@ -8,30 +8,39 @@ describe('useAriaLive', () => {
     document.querySelectorAll('[role="status"]').forEach((el) => el.remove())
   })
 
-  it('creates live region when message is provided', () => {
+  it('creates live region when message is provided', async () => {
     renderHook(() => useAriaLive('Test message'))
 
-    const liveRegion = document.querySelector('[role="status"]')
-    expect(liveRegion).toBeTruthy()
-    expect(liveRegion?.getAttribute('aria-live')).toBe('polite')
-    expect(liveRegion?.getAttribute('aria-atomic')).toBe('true')
+    await waitFor(() => {
+      const liveRegion = document.querySelector('[role="status"]')
+      expect(liveRegion).toBeTruthy()
+      expect(liveRegion?.getAttribute('aria-live')).toBe('polite')
+      expect(liveRegion?.getAttribute('aria-atomic')).toBe('true')
+    })
   })
 
-  it('uses assertive priority when specified', () => {
+  it('uses assertive priority when specified', async () => {
     renderHook(() => useAriaLive('Test message', 'assertive'))
 
-    const liveRegion = document.querySelector('[role="status"]')
-    expect(liveRegion?.getAttribute('aria-live')).toBe('assertive')
+    await waitFor(() => {
+      const liveRegion = document.querySelector('[role="status"]')
+      expect(liveRegion?.getAttribute('aria-live')).toBe('assertive')
+    })
   })
 
-  it('does not create live region when message is empty', () => {
+  it('creates live region on mount even when message is empty', async () => {
     renderHook(() => useAriaLive(''))
 
-    const liveRegion = document.querySelector('[role="status"]')
-    expect(liveRegion).toBeNull()
+    // Live region is created on mount regardless of message
+    await waitFor(() => {
+      const liveRegion = document.querySelector('[role="status"]')
+      expect(liveRegion).toBeTruthy()
+      // But textContent should be empty
+      expect(liveRegion?.textContent).toBe('')
+    })
   })
 
-  it('updates message when it changes', () => {
+  it('updates message when it changes', async () => {
     const { rerender } = renderHook(
       ({ message }) => useAriaLive(message),
       {
@@ -39,12 +48,16 @@ describe('useAriaLive', () => {
       }
     )
 
-    let liveRegion = document.querySelector('[role="status"]')
-    expect(liveRegion?.textContent).toBe('First message')
+    await waitFor(() => {
+      const liveRegion = document.querySelector('[role="status"]')
+      expect(liveRegion?.textContent).toBe('First message')
+    })
 
     rerender({ message: 'Second message' })
 
-    liveRegion = document.querySelector('[role="status"]')
-    expect(liveRegion?.textContent).toBe('Second message')
+    await waitFor(() => {
+      const liveRegion = document.querySelector('[role="status"]')
+      expect(liveRegion?.textContent).toBe('Second message')
+    })
   })
 })

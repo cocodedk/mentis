@@ -9,51 +9,50 @@ const mockItems = [
 ]
 
 describe('Dropdown', () => {
-  const mockNavigate = vi.fn()
+  const mockSelect = vi.fn()
 
   it('renders trigger button', () => {
     render(
       <Dropdown
-        trigger={<span>Click me</span>}
+        label="Click me"
         items={mockItems}
-        onNavigate={mockNavigate}
+        onSelect={mockSelect}
       />
     )
-    // Dropdown renders trigger as children, so check for text
-    expect(screen.getByText('Click me')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Click me' })).toBeInTheDocument()
   })
 
   it('opens dropdown when trigger is clicked', async () => {
     render(
       <Dropdown
-        trigger={<span>Click me</span>}
+        label="Click me"
         items={mockItems}
-        onNavigate={mockNavigate}
+        onSelect={mockSelect}
       />
     )
 
-    const trigger = screen.getByText('Click me')
+    const trigger = screen.getByRole('button', { name: 'Click me' })
     await userEvent.click(trigger)
 
-    // Items should be rendered (might be in a list or links)
-    expect(screen.getByText('Item 1')).toBeInTheDocument()
+    // Items should be rendered as links
+    expect(screen.getByRole('menuitem', { name: 'Item 1' })).toBeInTheDocument()
   })
 
-  it('calls onNavigate when item is clicked', async () => {
+  it('calls onSelect when item is clicked', async () => {
     render(
       <Dropdown
-        trigger={<span>Click me</span>}
+        label="Click me"
         items={mockItems}
-        onNavigate={mockNavigate}
+        onSelect={mockSelect}
       />
     )
 
-    const trigger = screen.getByText('Click me')
+    const trigger = screen.getByRole('button', { name: 'Click me' })
     await userEvent.click(trigger)
 
-    const item = screen.getByText('Item 1')
+    const item = screen.getByRole('menuitem', { name: 'Item 1' })
     await userEvent.click(item)
 
-    expect(mockNavigate).toHaveBeenCalledWith('/item1')
+    expect(mockSelect).toHaveBeenCalledWith(mockItems[0])
   })
 })

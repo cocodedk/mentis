@@ -23,16 +23,18 @@ describe('Navigation', () => {
     render(
       <Navigation
         items={navigationItems}
-        currentPath="/behandlinger"
+        currentPath="/personale"
         onNavigate={mockNavigate}
       />
     )
 
-    const activeLink = screen.getByRole('link', { name: /behandlinger/i })
-    expect(activeLink.className).toContain('text-primary-500')
+    // Find a link without children (Personale)
+    const activeLink = screen.getByRole('link', { name: /personale/i })
+    expect(activeLink).toBeTruthy()
+    expect(activeLink.className || '').toContain('text-primary-500')
   })
 
-  it('opens dropdown on hover', async () => {
+  it('opens dropdown on click', async () => {
     render(
       <Navigation
         items={navigationItems}
@@ -44,11 +46,13 @@ describe('Navigation', () => {
     // Find an item with children
     const parentItem = navigationItems.find((item) => item.children && item.children.length > 0)
     if (parentItem) {
-      const link = screen.getByRole('link', { name: parentItem.label })
-      await userEvent.hover(link)
+      // Navigation uses buttons for items with children
+      const button = screen.getByRole('button', { name: parentItem.label })
+      await userEvent.click(button)
 
-      // Dropdown should be visible
-      expect(screen.getByText(parentItem.children![0].label)).toBeInTheDocument()
+      // Dropdown should be visible - check for child link
+      const childItem = parentItem.children![0]
+      expect(screen.getByRole('menuitem', { name: childItem.label })).toBeInTheDocument()
     }
   })
 })

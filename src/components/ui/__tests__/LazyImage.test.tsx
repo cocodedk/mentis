@@ -1,19 +1,13 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { render, screen, waitFor } from '@/test-utils/test-utils'
 import { LazyImage } from '../LazyImage'
 
 describe('LazyImage', () => {
-  let mockIntersectionObserver: any
-
   beforeEach(() => {
-    // Reset IntersectionObserver mock
-    mockIntersectionObserver = vi.fn()
-    mockIntersectionObserver.mockReturnValue({
-      observe: vi.fn(),
-      disconnect: vi.fn(),
-      unobserve: vi.fn(),
-    })
-    global.IntersectionObserver = mockIntersectionObserver
+    // Reset IntersectionObserver instances
+    if (typeof (global.IntersectionObserver as any).reset === 'function') {
+      ;(global.IntersectionObserver as any).reset()
+    }
   })
 
   it('renders placeholder initially', () => {
@@ -23,12 +17,19 @@ describe('LazyImage', () => {
     expect(placeholder).toBeInTheDocument()
   })
 
-  it('has correct alt text', () => {
+  it('has correct alt text', async () => {
     render(<LazyImage src="/test.jpg" alt="Test image" />)
 
-    // The actual img might not be rendered yet, but we can check the component structure
+    // Trigger intersection to load image
     const container = screen.getByRole('img', { name: /loading image/i }).parentElement
-    expect(container).toBeInTheDocument()
+    if (container && typeof (global.IntersectionObserver as any).triggerIntersection === 'function') {
+      ;(global.IntersectionObserver as any).triggerIntersection(container, true)
+    }
+
+    await waitFor(() => {
+      const img = screen.queryByAltText('Test image')
+      expect(img).toBeInTheDocument()
+    })
   })
 
   it('applies custom className', () => {

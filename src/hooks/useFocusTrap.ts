@@ -15,6 +15,14 @@ export function useFocusTrap(
     const focusableElements = container.querySelectorAll(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     )
+
+    if (focusableElements.length === 0) {
+      // No focusable elements, make container focusable
+      container.setAttribute('tabindex', '-1')
+      container.focus()
+      return
+    }
+
     const firstElement = focusableElements[0] as HTMLElement
     const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement
 
@@ -34,7 +42,7 @@ export function useFocusTrap(
       }
     }
 
-    firstElement?.focus()
+    firstElement.focus()
     container.addEventListener('keydown', handleTabKey)
 
     return () => {
