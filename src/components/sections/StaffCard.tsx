@@ -1,5 +1,6 @@
 import { Card } from '@/components/ui'
 import type { StaffMember } from '@/data/staff'
+import { getAssetPath } from '@/utils/seo'
 
 interface StaffCardProps {
   staff: StaffMember
@@ -17,7 +18,7 @@ export function StaffCard({ staff, onClick }: StaffCardProps) {
       <div className="text-center">
         {staff.photo ? (
           <img
-            src={staff.photo}
+            src={getAssetPath(staff.photo)}
             alt={`${staff.name}, ${staff.role}`}
             className="w-32 h-32 rounded-full mx-auto mb-4 object-cover object-[center_28%] scale-[0.675]"
           />

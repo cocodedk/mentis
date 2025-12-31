@@ -1,4 +1,5 @@
 import type { StaffMember } from '@/data/staff'
+import { getAssetPath } from '@/utils/seo'
 
 /**
  * Computes two-character initials from a name
@@ -39,7 +40,7 @@ export function StaffDetail({ staff }: { staff: StaffMember }) {
       <div className="flex items-start gap-6">
         {staff.photo ? (
           <img
-            src={staff.photo}
+            src={getAssetPath(staff.photo)}
             alt={`${staff.name}, ${staff.role}`}
             className="w-32 h-32 rounded-full object-cover flex-shrink-0"
           />

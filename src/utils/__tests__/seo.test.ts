@@ -3,6 +3,7 @@ import {
   getBaseUrl,
   getAbsoluteUrl,
   getCanonicalUrl,
+  getAssetPath,
   setMetaTag,
   removeMetaTag,
   setDocumentTitle,
@@ -82,6 +83,42 @@ describe('seo', () => {
       expect(url).toBeTruthy()
       expect(url).toContain('/behandlinger')
       expect(url.startsWith('http')).toBe(true)
+    })
+  })
+
+  describe('getAssetPath', () => {
+    it('returns path with base URL prefix when BASE_URL is set', () => {
+      const path = getAssetPath('/images/staff/photo.jpg', '/mentis/')
+      expect(path).toBe('/mentis/images/staff/photo.jpg')
+    })
+
+    it('returns path without prefix when BASE_URL is root', () => {
+      const path = getAssetPath('/images/staff/photo.jpg', '/')
+      expect(path).toBe('/images/staff/photo.jpg')
+    })
+
+    it('handles paths without leading slash', () => {
+      const path = getAssetPath('images/staff/photo.jpg', '/mentis/')
+      expect(path).toBe('/mentis/images/staff/photo.jpg')
+    })
+
+    it('handles empty string', () => {
+      const path = getAssetPath('')
+      expect(path).toBe('')
+    })
+
+    it('handles base URL without trailing slash', () => {
+      const path = getAssetPath('/images/staff/photo.jpg', '/mentis')
+      expect(path).toBe('/mentis/images/staff/photo.jpg')
+    })
+
+    it('uses import.meta.env.BASE_URL when no override provided', () => {
+      // This test verifies the function works with the actual BASE_URL from env
+      const path = getAssetPath('/images/staff/photo.jpg')
+      // Should work regardless of what BASE_URL is set to
+      expect(path).toBeTruthy()
+      expect(typeof path).toBe('string')
+      expect(path.startsWith('/')).toBe(true)
     })
   })
 

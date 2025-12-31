@@ -56,6 +56,32 @@ export function getCanonicalUrl(path: string): string {
 }
 
 /**
+ * Get an asset path with the base URL prefix
+ * Use this for images and other assets in the public folder
+ * @param path - Asset path (e.g., '/images/staff/photo.jpg' or 'images/staff/photo.jpg')
+ * @param basePathOverride - Optional base path override for testing (defaults to import.meta.env.BASE_URL)
+ * @returns Path with base URL prefix (e.g., '/mentis/images/staff/photo.jpg' in GitHub Pages, '/images/staff/photo.jpg' in dev)
+ *
+ * @example
+ * // In dev (BASE_URL = '/'): '/images/staff/photo.jpg'
+ * // In GitHub Pages (BASE_URL = '/mentis/'): '/mentis/images/staff/photo.jpg'
+ */
+export function getAssetPath(path: string, basePathOverride?: string): string {
+  if (!path) return ''
+
+  const basePath = basePathOverride ?? (import.meta.env.BASE_URL || '/')
+
+  // Remove leading slash from path to avoid double slashes
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path
+
+  // Normalize basePath: ensure it ends with / unless it's root
+  const normalizedBase = basePath === '/' ? '/' : basePath.endsWith('/') ? basePath : `${basePath}/`
+
+  // Combine: basePath already has trailing slash, cleanPath has no leading slash
+  return `${normalizedBase}${cleanPath}`
+}
+
+/**
  * Update or create a meta tag in the document head
  */
 export function setMetaTag(name: string, content: string, attribute: 'name' | 'property' = 'name'): void {

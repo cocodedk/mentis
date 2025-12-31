@@ -8,6 +8,7 @@ import {
   generateBreadcrumbSchema,
   generateWebSiteSchema,
 } from '@/utils/structuredData'
+import { getAssetPath } from '@/utils/seo'
 
 /**
  * Main homepage component
@@ -24,7 +25,7 @@ export default function HomePage() {
         'Specialiseret neuropsykiatrisk udredning og behandling. Tværfagligt team af psykiatere, psykologer og specialister i Jylland og på Sjælland.',
       ogType: 'website',
       ogLocale: 'da_DK',
-      ogImage: '/vite.svg', // TODO: Replace with actual clinic logo/hero image (recommended: 1200x630px)
+      ogImage: getAssetPath('/vite.svg'), // TODO: Replace with actual clinic logo/hero image (recommended: 1200x630px)
       twitterCard: 'summary_large_image',
       twitterTitle: 'Mentis Neuropsykiatrisk Klinik',
       twitterDescription:

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui'
+import { getAssetPath } from '@/utils/seo'
 
 interface HeroProps {
   headline: string
@@ -32,7 +33,7 @@ export function Hero({
       style={
         backgroundImage
           ? {
-              backgroundImage: `url(${backgroundImage})`,
+              backgroundImage: `url(${getAssetPath(backgroundImage)})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }
