@@ -18,11 +18,11 @@ describe('StaffPage', () => {
     const staffCards = screen.getAllByRole('button', {
       name: /klik for at se profil/i,
     })
-    if (staffCards.length > 0) {
-      await userEvent.click(staffCards[0])
+    expect(staffCards.length).toBeGreaterThan(0)
 
-      // Modal should open - check for dialog
-      expect(screen.getByRole('dialog')).toBeInTheDocument()
-    }
+    await userEvent.click(staffCards[0])
+
+    // Modal should open - check for dialog
+    expect(screen.getByRole('dialog')).toBeInTheDocument()
   })
 })

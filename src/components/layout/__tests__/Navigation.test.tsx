@@ -43,16 +43,18 @@ describe('Navigation', () => {
       />
     )
 
-    // Find an item with children
+    // Find an item with children - explicitly assert it exists
     const parentItem = navigationItems.find((item) => item.children && item.children.length > 0)
-    if (parentItem) {
-      // Navigation uses buttons for items with children
-      const button = screen.getByRole('button', { name: parentItem.label })
-      await userEvent.click(button)
+    expect(parentItem).toBeDefined()
+    expect(parentItem?.children).toBeDefined()
+    expect(parentItem?.children?.length).toBeGreaterThan(0)
 
-      // Dropdown should be visible - check for child link
-      const childItem = parentItem.children![0]
-      expect(screen.getByRole('menuitem', { name: childItem.label })).toBeInTheDocument()
-    }
+    // Navigation uses buttons for items with children
+    const button = screen.getByRole('button', { name: parentItem!.label })
+    await userEvent.click(button)
+
+    // Dropdown should be visible - check for child link
+    const childItem = parentItem!.children![0]
+    expect(screen.getByRole('menuitem', { name: childItem.label })).toBeInTheDocument()
   })
 })

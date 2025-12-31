@@ -3,6 +3,31 @@ import { Grid, Container, Section } from '@/components/layout'
 import { locations } from '@/data/locations'
 
 /**
+ * Normalizes a phone number for use in tel: links.
+ * Removes all non-digit characters while preserving a leading '+' if present.
+ * Returns null if the input is invalid or would produce an empty result.
+ */
+function normalizePhoneNumber(phone: string | null | undefined): string | null {
+  if (!phone) {
+    return null
+  }
+
+  const trimmed = phone.trim()
+  if (!trimmed) {
+    return null
+  }
+
+  const hasLeadingPlus = trimmed.startsWith('+')
+  const digitsOnly = trimmed.replace(/\D/g, '')
+
+  if (!digitsOnly) {
+    return null
+  }
+
+  return hasLeadingPlus ? `+${digitsOnly}` : digitsOnly
+}
+
+/**
  * Find os (locations) page
  * Lists all clinic locations
  */
@@ -18,29 +43,32 @@ export default function LocationsPage() {
           vores klinikker:
         </p>
         <Grid cols={{ default: 1, md: 2, lg: 3 }} gap="lg">
-          {locations.map((location) => (
-            <Card key={location.id} variant="default">
-              <h2 className="text-h2 text-neutral-900 mb-4">
-                {location.name}
-              </h2>
-              <div className="space-y-2 text-body text-neutral-600">
-                <p>{location.address}</p>
-                <p>
-                  {location.postalCode} {location.city}
-                </p>
-                {location.phone && (
+          {locations.map((location) => {
+            const normalizedPhone = normalizePhoneNumber(location.phone)
+            return (
+              <Card key={location.id} variant="default">
+                <h2 className="text-h2 text-neutral-900 mb-4">
+                  {location.name}
+                </h2>
+                <div className="space-y-2 text-body text-neutral-600">
+                  <p>{location.address}</p>
                   <p>
-                    <a
-                      href={`tel:${location.phone.replace(/\s/g, '')}`}
-                      className="text-primary-500 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
-                    >
-                      {location.phone}
-                    </a>
+                    {location.postalCode} {location.city}
                   </p>
-                )}
-              </div>
-            </Card>
-          ))}
+                  {location.phone && normalizedPhone && (
+                    <p>
+                      <a
+                        href={`tel:${normalizedPhone}`}
+                        className="text-primary-500 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
+                      >
+                        {location.phone}
+                      </a>
+                    </p>
+                  )}
+                </div>
+              </Card>
+            )
+          })}
         </Grid>
       </Container>
     </Section>
