@@ -15,7 +15,7 @@ export interface Treatment {
   }
 }
 
-export const treatments: Treatment[] = [
+export const treatments = [
   {
     id: 'tms',
     title: 'TMS (Transkraniel magnetisk stimulation)',
@@ -176,8 +176,24 @@ export const treatments: Treatment[] = [
       sessions: 'Efter aftale',
     },
   },
-]
+] as const
 
-export function getTreatmentBySlug(slug: string): Treatment | undefined {
-  return treatments.find((t) => t.slug === slug)
+// Derive Slug type from treatments array
+export type Slug = (typeof treatments)[number]['slug']
+
+// Development-only validation: check for duplicate slugs
+if (import.meta.env.DEV) {
+  const slugs = treatments.map((t) => t.slug)
+  const duplicates = slugs.filter(
+    (slug, index) => slugs.indexOf(slug) !== index
+  )
+  if (duplicates.length > 0) {
+    throw new Error(
+      `Duplicate slugs found in treatments: ${[...new Set(duplicates)].join(', ')}`
+    )
+  }
+}
+
+export function getTreatmentBySlug(slug: Slug): Treatment | undefined {
+  return treatments.find((t) => t.slug === slug) as Treatment | undefined
 }

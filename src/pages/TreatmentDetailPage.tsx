@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { Button } from '@/components/ui'
 import { Container, Section } from '@/components/layout'
 import { TreatmentDetail } from '@/components/sections/TreatmentDetail'
-import { getTreatmentBySlug } from '@/data/treatments'
+import { getTreatmentBySlug, type Slug } from '@/data/treatments'
 import { NotFound } from './NotFound'
 
 /**
@@ -11,7 +11,7 @@ import { NotFound } from './NotFound'
  */
 export function TreatmentDetailPage() {
   const { slug } = useParams<{ slug: string }>()
-  const treatment = slug ? getTreatmentBySlug(slug) : undefined
+  const treatment = slug ? getTreatmentBySlug(slug as Slug) : undefined
 
   if (!treatment) {
     return <NotFound />

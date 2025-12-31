@@ -60,7 +60,12 @@ export function setCookie(
   if (category === 'necessary' || consent[category]) {
     const expires = new Date()
     expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000)
-    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`
+    // Check for production build or HTTPS connection
+    // import.meta.env.PROD is Vite's equivalent to process.env.NODE_ENV === 'production'
+    const isSecure =
+      import.meta.env.PROD || (typeof window !== 'undefined' && window.location.protocol === 'https:')
+    const secureFlag = isSecure ? ';Secure' : ''
+    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax${secureFlag}`
   }
 }
 
