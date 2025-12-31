@@ -25,9 +25,9 @@ export default {
         sans: ['Inter', 'sans-serif'],
       },
       fontSize: {
-        'h1': ['40px', { lineHeight: '130%', fontWeight: '600' }],
-        'h2': ['28px', { lineHeight: '130%', fontWeight: '600' }],
-        'h3': ['22px', { lineHeight: '130%', fontWeight: '500' }],
+        'h1': ['clamp(28px, 5vw, 40px)', { lineHeight: '130%', fontWeight: '600' }],
+        'h2': ['clamp(22px, 4vw, 28px)', { lineHeight: '130%', fontWeight: '600' }],
+        'h3': ['clamp(18px, 3vw, 22px)', { lineHeight: '130%', fontWeight: '500' }],
         'body-lg': ['18px', { lineHeight: '150%' }],
         'body': ['16px', { lineHeight: '150%' }],
         'body-sm': ['14px', { lineHeight: '150%' }],

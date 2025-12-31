@@ -28,7 +28,7 @@ export function Hero({
 }: HeroProps) {
   return (
     <section
-      className="relative min-h-[500px] flex items-center justify-center bg-primary-500"
+      className="relative min-h-[420px] sm:min-h-[500px] flex items-center justify-center bg-primary-500"
       style={
         backgroundImage
           ? {
@@ -42,9 +42,11 @@ export function Hero({
       {backgroundImage && (
         <div className="absolute inset-0 bg-black bg-opacity-40" />
       )}
-      <div className="relative z-10 container mx-auto px-4 py-16 text-center">
-        <h1 className="text-h1 text-white mb-6 font-semibold">{headline}</h1>
-        <p className="text-body-lg text-white mb-8 max-w-2xl mx-auto">
+      <div className="relative z-10 container mx-auto px-4 py-12 sm:py-16 text-center">
+        <h1 className="text-[28px] sm:text-[34px] md:text-h1 text-white mb-5 sm:mb-6 font-semibold leading-tight break-words">
+          {headline}
+        </h1>
+        <p className="text-body sm:text-body-lg text-white mb-7 sm:mb-8 max-w-2xl mx-auto">
           {subheadline}
         </p>
         {(primaryCTA || secondaryCTA) && (

@@ -7,6 +7,10 @@ import path from 'path'
 export default defineConfig({
   base: process.env.BASE_URL || '/',
   plugins: [react(), tailwindcss()],
+  server: {
+    host: '0.0.0.0', // Allow external access
+    port: 5173,
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
