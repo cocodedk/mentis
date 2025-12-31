@@ -3,11 +3,17 @@ import { Card, Button } from '@/components/ui'
 import { Grid } from '@/components/layout'
 import { treatments } from '@/data/treatments'
 
+interface ServicesOverviewProps {
+  maxVisibleTreatments?: number
+}
+
 /**
  * Services overview grid section
  * Displays treatment cards in a grid layout
  */
-export function ServicesOverview() {
+export function ServicesOverview({
+  maxVisibleTreatments = 5,
+}: ServicesOverviewProps = {}) {
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
@@ -15,7 +21,7 @@ export function ServicesOverview() {
           Vores behandlinger
         </h2>
         <Grid cols={{ default: 1, md: 2, lg: 3 }} gap="lg">
-          {treatments.slice(0, 5).map((treatment) => (
+          {treatments.slice(0, maxVisibleTreatments).map((treatment) => (
             <Card key={treatment.id} variant="treatment">
               <h3 className="text-h3 text-neutral-900 mb-3">
                 {treatment.title}
