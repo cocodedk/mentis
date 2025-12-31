@@ -42,7 +42,7 @@ export function PracticalInfoPreview() {
               to={topic.path}
               className="flex items-center p-4 bg-white rounded-lg hover:shadow-md transition-shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
             >
-              <span className="text-2xl mr-4">{topic.icon}</span>
+              <span className="text-2xl mr-4" aria-hidden="true">{topic.icon}</span>
               <span className="text-body text-neutral-900">{topic.label}</span>
             </Link>
           ))}
