@@ -7,8 +7,7 @@ describe('HomePage', () => {
     render(<HomePage />)
     // Check for hero headline
     expect(
-      screen.getByText(/Specialiseret neuropsykiatrisk/i
-      )
+      screen.getByText(/Specialiseret neuropsykiatrisk/i)
     ).toBeInTheDocument()
   })
 

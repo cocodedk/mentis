@@ -111,7 +111,6 @@ export default function ContactPage() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  error={errors.phone}
                 />
                 <Textarea
                   label="Besked"
