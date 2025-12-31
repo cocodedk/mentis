@@ -1,6 +1,35 @@
 import type { StaffMember } from '@/data/staff'
 
 /**
+ * Computes two-character initials from a name
+ * Returns first letter of first word and first letter of last word (if present)
+ * Handles null/undefined/empty strings safely
+ */
+function getInitials(name: string | null | undefined): string {
+  if (!name || typeof name !== 'string') {
+    return '?'
+  }
+
+  const trimmed = name.trim()
+  if (!trimmed) {
+    return '?'
+  }
+
+  const segments = trimmed.split(/\s+/).filter(Boolean)
+  if (segments.length === 0) {
+    return '?'
+  }
+
+  const firstInitial = segments[0].charAt(0).toUpperCase()
+  if (segments.length === 1) {
+    return firstInitial
+  }
+
+  const lastInitial = segments[segments.length - 1].charAt(0).toUpperCase()
+  return firstInitial + lastInitial
+}
+
+/**
  * Staff detail content for modal
  * Shows: bio, specialisations, languages, certifications
  */
@@ -20,7 +49,7 @@ export function StaffDetail({ staff }: { staff: StaffMember }) {
             aria-label={`${staff.name}, ${staff.role}`}
           >
             <span className="text-4xl text-neutral-400" aria-hidden="true">
-              {staff.name.charAt(0)}
+              {getInitials(staff.name)}
             </span>
           </div>
         )}
