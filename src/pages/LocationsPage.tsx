@@ -1,6 +1,11 @@
 import { Card } from '@/components/ui'
 import { Grid, Container, Section } from '@/components/layout'
 import { locations } from '@/data/locations'
+import { useSEO } from '@/hooks/useSEO'
+import {
+  generateLocalBusinessSchema,
+  generateBreadcrumbSchema,
+} from '@/utils/structuredData'
 
 /**
  * Normalizes a phone number for use in tel: links.
@@ -47,6 +52,27 @@ function generateGoogleMapsUrl(
  * Lists all clinic locations
  */
 export default function LocationsPage() {
+  const locationSchemas = locations.map((location) =>
+    generateLocalBusinessSchema(location)
+  )
+
+  useSEO({
+    metadata: {
+      title: 'Find os - Mentis Neuropsykiatrisk Klinik',
+      description:
+        'Mentis har klinikker i Risskov, Kolding og København. Du modtager et brev med tiden og stedet for din konsultation.',
+      ogTitle: 'Find os - Mentis Neuropsykiatrisk Klinik',
+      ogDescription: 'Klinikker i Risskov, Kolding og København',
+      ogType: 'website',
+      ogLocale: 'da_DK',
+      twitterCard: 'summary_large_image',
+    },
+    structuredData: [
+      ...locationSchemas,
+      generateBreadcrumbSchema('/find-os'),
+    ],
+  })
+
   return (
     <Section background="neutral-100" padding="lg">
       <Container>

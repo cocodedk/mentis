@@ -1,5 +1,10 @@
 import { Card } from '@/components/ui'
 import { Grid, Container, Section } from '@/components/layout'
+import { useSEO } from '@/hooks/useSEO'
+import {
+  generateCollectionPageSchema,
+  generateBreadcrumbSchema,
+} from '@/utils/structuredData'
 
 interface LinkCategory {
   category: string
@@ -89,6 +94,35 @@ const linkCategories: LinkCategory[] = [
  * External links with proper attributes
  */
 export default function LinksPage() {
+  const allLinks = linkCategories.flatMap((category) =>
+    category.links.map((link) => ({
+      name: link.name,
+      url: link.url,
+    }))
+  )
+
+  useSEO({
+    metadata: {
+      title: 'Links - Mentis Neuropsykiatrisk Klinik',
+      description:
+        'Nyttige links til relevante ressourcer for patienter og fagfolk. Sundhedsportaler, akutte tjenester, psykisk sundhed og mere.',
+      ogTitle: 'Links - Mentis Neuropsykiatrisk Klinik',
+      ogDescription: 'Nyttige links til relevante ressourcer for patienter og fagfolk',
+      ogType: 'website',
+      ogLocale: 'da_DK',
+      twitterCard: 'summary_large_image',
+    },
+    structuredData: [
+      generateCollectionPageSchema(
+        'Links',
+        'Nyttige links til relevante ressourcer for patienter og fagfolk',
+        '/links',
+        allLinks
+      ),
+      generateBreadcrumbSchema('/links'),
+    ],
+  })
+
   return (
     <Section background="neutral-100" padding="lg">
       <Container>

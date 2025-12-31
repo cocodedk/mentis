@@ -2,12 +2,45 @@ import { Link } from 'react-router-dom'
 import { Card, Button } from '@/components/ui'
 import { Grid, Container, Section } from '@/components/layout'
 import { treatments } from '@/data/treatments'
+import { useSEO } from '@/hooks/useSEO'
+import {
+  generateCollectionPageSchema,
+  generateBreadcrumbSchema,
+} from '@/utils/structuredData'
 
 /**
  * Treatments overview page
  * Grid of all treatment cards
  */
 export default function TreatmentsPage() {
+  const treatmentItems = treatments.map((treatment) => ({
+    name: treatment.title,
+    url: `/behandlinger/${treatment.slug}`,
+  }))
+
+  useSEO({
+    metadata: {
+      title: 'Behandlinger - Mentis Neuropsykiatrisk Klinik',
+      description:
+        'Vi tilbyder en række specialiserede behandlinger og evalueringer inden for neuropsykiatri og psykiatri. TMS-behandling, udredning, mindfulness, CFT og mere.',
+      ogTitle: 'Behandlinger - Mentis Neuropsykiatrisk Klinik',
+      ogDescription:
+        'Specialiserede behandlinger inden for neuropsykiatri og psykiatri',
+      ogType: 'website',
+      ogLocale: 'da_DK',
+      twitterCard: 'summary_large_image',
+    },
+    structuredData: [
+      generateCollectionPageSchema(
+        'Behandlinger',
+        'Specialiserede behandlinger inden for neuropsykiatri og psykiatri',
+        '/behandlinger',
+        treatmentItems
+      ),
+      generateBreadcrumbSchema('/behandlinger'),
+    ],
+  })
+
   return (
     <Section background="neutral-100" padding="lg">
       <Container>

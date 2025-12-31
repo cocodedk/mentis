@@ -2,6 +2,12 @@ import { useParams } from 'react-router-dom'
 import { Container, Section } from '@/components/layout'
 import { Accordion } from '@/components/ui'
 import { getPracticalInfoBySlug } from '@/data/practicalInfo'
+import { useSEO } from '@/hooks/useSEO'
+import {
+  generateFAQPageSchema,
+  generateArticleSchema,
+  generateBreadcrumbSchema,
+} from '@/utils/structuredData'
 import NotFound from './NotFound'
 
 /**
@@ -16,6 +22,28 @@ export default function PracticalInfoDetailPage() {
   if (!item) {
     return <NotFound />
   }
+
+  // Use FAQPage schema if item has accordions, otherwise Article schema
+  const faqSchema = generateFAQPageSchema(item)
+  const articleSchema = !faqSchema ? generateArticleSchema(item) : null
+
+  const structuredData = [
+    faqSchema || articleSchema,
+    generateBreadcrumbSchema(`/praktisk-information/${item.slug}`),
+  ].filter(Boolean)
+
+  useSEO({
+    metadata: {
+      title: `${item.title} - Praktisk Information - Mentis`,
+      description: item.content.substring(0, 160),
+      ogTitle: item.title,
+      ogDescription: item.content.substring(0, 160),
+      ogType: 'article',
+      ogLocale: 'da_DK',
+      twitterCard: 'summary_large_image',
+    },
+    structuredData,
+  })
 
   return (
     <Section background="neutral-100" padding="lg">

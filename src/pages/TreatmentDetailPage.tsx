@@ -3,6 +3,11 @@ import { Button } from '@/components/ui'
 import { Container, Section } from '@/components/layout'
 import { TreatmentDetail } from '@/components/sections/TreatmentDetail'
 import { getTreatmentBySlug, type Slug } from '@/data/treatments'
+import { useSEO } from '@/hooks/useSEO'
+import {
+  generateMedicalProcedureSchema,
+  generateBreadcrumbSchema,
+} from '@/utils/structuredData'
 import NotFound from './NotFound'
 
 /**
@@ -16,6 +21,22 @@ export default function TreatmentDetailPage() {
   if (!treatment) {
     return <NotFound />
   }
+
+  useSEO({
+    metadata: {
+      title: `${treatment.title} - Mentis Neuropsykiatrisk Klinik`,
+      description: treatment.shortDescription,
+      ogTitle: treatment.title,
+      ogDescription: treatment.shortDescription,
+      ogType: 'website',
+      ogLocale: 'da_DK',
+      twitterCard: 'summary_large_image',
+    },
+    structuredData: [
+      generateMedicalProcedureSchema(treatment),
+      generateBreadcrumbSchema(`/behandlinger/${treatment.slug}`),
+    ],
+  })
 
   return (
     <>

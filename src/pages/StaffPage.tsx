@@ -5,6 +5,13 @@ import { StaffCard } from '@/components/sections/StaffCard'
 import { StaffDetail } from '@/components/sections/StaffDetail'
 import { staffMembers } from '@/data/staff'
 import type { StaffMember } from '@/data/staff'
+import { useSEO } from '@/hooks/useSEO'
+import {
+  generateCollectionPageSchema,
+  generatePersonSchema,
+  generateBreadcrumbSchema,
+} from '@/utils/structuredData'
+import { getAbsoluteUrl } from '@/utils/seo'
 
 /**
  * Staff overview page
@@ -13,6 +20,41 @@ import type { StaffMember } from '@/data/staff'
  */
 export default function StaffPage() {
   const [selectedStaff, setSelectedStaff] = useState<StaffMember | null>(null)
+
+  const organizationUrl = getAbsoluteUrl('/')
+  const staffItems = staffMembers.map((staff) => ({
+    name: staff.name,
+    url: '/personale',
+  }))
+
+  // Generate Person schemas for all staff members
+  const personSchemas = staffMembers.map((staff) =>
+    generatePersonSchema(staff, organizationUrl)
+  )
+
+  useSEO({
+    metadata: {
+      title: 'Personale - Mentis Neuropsykiatrisk Klinik',
+      description:
+        'Vores tværfaglige team består af erfarne psykiatere, psykologer og specialister. Se vores eksperter inden for neuropsykiatri, TMS-behandling, psykoterapi og mere.',
+      ogTitle: 'Personale - Mentis Neuropsykiatrisk Klinik',
+      ogDescription:
+        'Tværfagligt team af erfarne psykiatere, psykologer og specialister',
+      ogType: 'website',
+      ogLocale: 'da_DK',
+      twitterCard: 'summary_large_image',
+    },
+    structuredData: [
+      generateCollectionPageSchema(
+        'Personale',
+        'Tværfagligt team af erfarne psykiatere, psykologer og specialister',
+        '/personale',
+        staffItems
+      ),
+      ...personSchemas,
+      generateBreadcrumbSchema('/personale'),
+    ],
+  })
 
   return (
     <>

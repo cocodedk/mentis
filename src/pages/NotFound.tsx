@@ -1,11 +1,27 @@
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui'
 import { Container, Section } from '@/components/layout'
+import { useSEO } from '@/hooks/useSEO'
 
 /**
  * 404 error page component
  */
 export default function NotFound() {
+  useSEO({
+    metadata: {
+      title: '404 - Siden blev ikke fundet - Mentis',
+      description:
+        'Den side, du leder efter, eksisterer ikke eller er blevet flyttet.',
+      ogTitle: '404 - Siden blev ikke fundet',
+      ogDescription:
+        'Den side, du leder efter, eksisterer ikke eller er blevet flyttet.',
+      ogType: 'website',
+      ogLocale: 'da_DK',
+      twitterCard: 'summary_large_image',
+      noindex: true, // Don't index 404 pages
+    },
+  })
+
   return (
     <Section background="neutral-100" padding="lg">
       <Container>

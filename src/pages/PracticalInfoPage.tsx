@@ -2,12 +2,45 @@ import { Link } from 'react-router-dom'
 import { Card, Button } from '@/components/ui'
 import { Grid, Container, Section } from '@/components/layout'
 import { practicalInfoItems } from '@/data/practicalInfo'
+import { useSEO } from '@/hooks/useSEO'
+import {
+  generateCollectionPageSchema,
+  generateBreadcrumbSchema,
+} from '@/utils/structuredData'
 
 /**
  * Main practical information page
  * List of all practical info topics
  */
 export default function PracticalInfoPage() {
+  const infoItems = practicalInfoItems.map((item) => ({
+    name: item.title,
+    url: `/praktisk-information/${item.slug}`,
+  }))
+
+  useSEO({
+    metadata: {
+      title: 'Praktisk Information - Mentis Neuropsykiatrisk Klinik',
+      description:
+        'Her finder du praktisk information om konsultationer, kontakt, afbud, tolkebistand, akut hjælp og meget mere.',
+      ogTitle: 'Praktisk Information - Mentis Neuropsykiatrisk Klinik',
+      ogDescription:
+        'Praktisk information om konsultationer, kontakt, afbud og meget mere',
+      ogType: 'website',
+      ogLocale: 'da_DK',
+      twitterCard: 'summary_large_image',
+    },
+    structuredData: [
+      generateCollectionPageSchema(
+        'Praktisk Information',
+        'Praktisk information om konsultationer, kontakt, afbud og meget mere',
+        '/praktisk-information',
+        infoItems
+      ),
+      generateBreadcrumbSchema('/praktisk-information'),
+    ],
+  })
+
   return (
     <Section background="neutral-100" padding="lg">
       <Container>

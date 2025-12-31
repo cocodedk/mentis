@@ -1,12 +1,34 @@
 import { useState } from 'react'
 import { Button, Input, Textarea, Alert } from '@/components/ui'
 import { Container, Section } from '@/components/layout'
+import { useSEO } from '@/hooks/useSEO'
+import {
+  generateContactPageSchema,
+  generateBreadcrumbSchema,
+} from '@/utils/structuredData'
 
 /**
  * Contact page/form
  * Contact form using Input and Textarea components
  */
 export default function ContactPage() {
+  useSEO({
+    metadata: {
+      title: 'Kontakt - Mentis Neuropsykiatrisk Klinik',
+      description:
+        'Kontakt Mentis Neuropsykiatrisk Klinik for at booke en konsultation eller få mere information. Telefon: 81 40 93 33 (mandag, tirsdag, torsdag og fredag 09:00–10:30).',
+      ogTitle: 'Kontakt - Mentis Neuropsykiatrisk Klinik',
+      ogDescription:
+        'Kontakt os for at booke en konsultation eller få mere information',
+      ogType: 'website',
+      ogLocale: 'da_DK',
+      twitterCard: 'summary_large_image',
+    },
+    structuredData: [
+      generateContactPageSchema(),
+      generateBreadcrumbSchema('/kontakt'),
+    ],
+  })
   const [formData, setFormData] = useState({
     name: '',
     email: '',
