@@ -5,8 +5,8 @@ import { LazyImage } from '../LazyImage'
 describe('LazyImage', () => {
   beforeEach(() => {
     // Reset IntersectionObserver instances
-    if (typeof (global.IntersectionObserver as any).reset === 'function') {
-      ;(global.IntersectionObserver as any).reset()
+    if (typeof (globalThis.IntersectionObserver as any).reset === 'function') {
+      ;(globalThis.IntersectionObserver as any).reset()
     }
   })
 
@@ -22,8 +22,8 @@ describe('LazyImage', () => {
 
     // Trigger intersection to load image
     const container = screen.getByRole('img', { name: /loading image/i }).parentElement
-    if (container && typeof (global.IntersectionObserver as any).triggerIntersection === 'function') {
-      ;(global.IntersectionObserver as any).triggerIntersection(container, true)
+    if (container && typeof (globalThis.IntersectionObserver as any).triggerIntersection === 'function') {
+      ;(globalThis.IntersectionObserver as any).triggerIntersection(container, true)
     }
 
     await waitFor(() => {

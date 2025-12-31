@@ -1,4 +1,4 @@
-import { ReactNode, HTMLAttributes } from 'react'
+import type { ReactNode, HTMLAttributes } from 'react'
 
 type BackgroundVariant = 'neutral-100' | 'neutral-200' | 'white'
 type PaddingVariant = 'sm' | 'md' | 'lg' | 'xl'

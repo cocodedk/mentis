@@ -1,4 +1,4 @@
-import { Treatment } from '@/data/treatments'
+import type { Treatment } from '@/data/treatments'
 import { Section } from '@/components/layout'
 
 /**

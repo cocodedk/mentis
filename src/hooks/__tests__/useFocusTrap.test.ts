@@ -1,6 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { renderHook, fireEvent } from '@testing-library/react'
-import { useRef } from 'react'
+import { renderHook } from '@testing-library/react'
 import { useFocusTrap } from '../useFocusTrap'
 
 describe('useFocusTrap', () => {
@@ -52,7 +51,7 @@ describe('useFocusTrap', () => {
     })
 
     // Manually trigger focus change to simulate browser behavior
-    const wasPrevented = !container.dispatchEvent(tabEvent)
+    container.dispatchEvent(tabEvent)
 
     // In real browser, focus would move to input
     // In test, we verify the container has the event listener

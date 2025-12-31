@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { renderHook, waitFor } from '@testing-library/react'
+import { renderHook } from '@testing-library/react'
 import { useIntersectionObserver } from '../useIntersectionObserver'
 
 describe('useIntersectionObserver', () => {
   beforeEach(() => {
     // Reset IntersectionObserver instances
-    if (typeof (global.IntersectionObserver as any).reset === 'function') {
-      ;(global.IntersectionObserver as any).reset()
+    if (typeof (globalThis.IntersectionObserver as any).reset === 'function') {
+      ;(globalThis.IntersectionObserver as any).reset()
     }
   })
 

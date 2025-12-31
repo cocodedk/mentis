@@ -1,4 +1,4 @@
-import { ReactNode, HTMLAttributes } from 'react'
+import type { ReactNode, HTMLAttributes } from 'react'
 
 interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode

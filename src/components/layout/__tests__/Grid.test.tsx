@@ -36,7 +36,7 @@ describe('Grid', () => {
 
   it('applies custom columns', () => {
     render(
-      <Grid gridCols={{ default: 2, md: 3 }}>
+      <Grid cols={{ default: 2, md: 3 }}>
         <div>Content</div>
       </Grid>
     )

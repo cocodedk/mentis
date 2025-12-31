@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@/test-utils/test-utils'
-import userEvent from '@testing-library/user-event'
 import { ContactPage } from '../ContactPage'
 
 describe('ContactPage', () => {

@@ -72,7 +72,6 @@ describe('accessibility', () => {
 
   describe('announceToScreenReader', () => {
     it('creates and removes announcement element', async () => {
-      const initialLength = document.body.children.length
       announceToScreenReader('Test announcement')
 
       // Element should be added

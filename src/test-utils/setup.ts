@@ -6,8 +6,8 @@ import { afterEach, vi } from 'vitest'
 afterEach(() => {
   cleanup()
   // Reset IntersectionObserver instances
-  if (typeof (global.IntersectionObserver as any).reset === 'function') {
-    ;(global.IntersectionObserver as any).reset()
+  if (typeof (globalThis.IntersectionObserver as any).reset === 'function') {
+    ;(globalThis.IntersectionObserver as any).reset()
   }
 })
 
@@ -20,7 +20,7 @@ let intersectionObserverInstances: Array<{
   disconnect: () => void
 }> = []
 
-global.IntersectionObserver = class IntersectionObserver {
+;(globalThis as any).IntersectionObserver = class IntersectionObserver {
   callback: IntersectionObserverCallback
   element: Element | null = null
   observe: (element: Element) => void
@@ -37,7 +37,7 @@ global.IntersectionObserver = class IntersectionObserver {
         // Store instance for manual triggering
         intersectionObserverInstances.push(instance)
       }),
-      unobserve: vi.fn((element: Element) => {
+      unobserve: vi.fn((_element: Element) => {
         instance.element = null
       }),
       disconnect: vi.fn(),
@@ -99,4 +99,4 @@ const localStorageMock = {
   removeItem: vi.fn(),
   clear: vi.fn(),
 }
-global.localStorage = localStorageMock as any
+globalThis.localStorage = localStorageMock as any

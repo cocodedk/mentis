@@ -1,4 +1,5 @@
-import { Component, ErrorInfo, ReactNode } from 'react'
+import { Component } from 'react'
+import type { ErrorInfo, ReactNode } from 'react'
 import { Button } from './Button'
 import { Container, Section } from '@/components/layout'
 
@@ -75,7 +76,7 @@ export class ErrorBoundary extends Component<
                   Tilbage til forsiden
                 </Button>
               </div>
-              {process.env.NODE_ENV === 'development' && this.state.error && (
+              {import.meta.env.DEV && this.state.error && (
                 <details className="mt-8 text-left">
                   <summary className="text-body-sm text-neutral-600 cursor-pointer">
                     Tekniske detaljer (kun i udvikling)

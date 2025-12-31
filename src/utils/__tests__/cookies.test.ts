@@ -6,8 +6,8 @@ import {
   setCookie,
   getCookie,
   removeCookie,
-  CookiePreferences,
 } from '../cookies'
+import type { CookiePreferences } from '../cookies'
 
 // Mock localStorage
 const localStorageMock = {

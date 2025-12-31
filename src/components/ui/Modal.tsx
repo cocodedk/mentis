@@ -1,4 +1,5 @@
-import { useEffect, useRef, ReactNode } from 'react'
+import { useEffect, useRef } from 'react'
+import type { ReactNode } from 'react'
 import { useFocusTrap } from '@/hooks/useFocusTrap'
 
 interface ModalProps {
@@ -51,7 +52,7 @@ export function Modal({
     }
   }, [isOpen, onClose])
 
-  useFocusTrap(modalRef, isOpen)
+  useFocusTrap(modalRef as React.RefObject<HTMLElement>, isOpen)
 
   useEffect(() => {
     if (isOpen && modalRef.current) {
