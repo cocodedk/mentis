@@ -79,18 +79,11 @@ export function Modal({
     }
   }
 
-  const handleBackdropKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === 'Escape') {
-      onClose()
-    }
-  }
-
   return (
     <>
       <div
         className="fixed inset-0 z-50 bg-black bg-opacity-50"
         onClick={handleBackdropClick}
-        onKeyDown={handleBackdropKeyDown}
         aria-hidden="true"
       />
       <div
