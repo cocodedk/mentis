@@ -2,6 +2,7 @@ import { Component } from 'react'
 import type { ErrorInfo, ReactNode } from 'react'
 import { Button } from './Button'
 import { Container, Section } from '@/components/layout'
+import { captureError } from '@/utils/errorTracking'
 
 interface ErrorBoundaryProps {
   children: ReactNode
@@ -38,6 +39,9 @@ export class ErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    // Capture error to Sentry (safely no-ops if not initialized)
+    captureError(error, errorInfo)
+    // Keep console.error for local debugging
     console.error('Error caught by boundary:', error, errorInfo)
   }
 
