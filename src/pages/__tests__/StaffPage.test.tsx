@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@/test-utils/test-utils'
 import userEvent from '@testing-library/user-event'
-import { StaffPage } from '../StaffPage'
+import StaffPage from '../StaffPage'
 
 describe('StaffPage', () => {
   it('renders staff grid', () => {

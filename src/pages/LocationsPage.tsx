@@ -6,7 +6,7 @@ import { locations } from '@/data/locations'
  * Find os (locations) page
  * Lists all clinic locations
  */
-export function LocationsPage() {
+export default function LocationsPage() {
   return (
     <Section background="neutral-100" padding="lg">
       <Container>

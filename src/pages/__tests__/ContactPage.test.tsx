@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@/test-utils/test-utils'
-import { ContactPage } from '../ContactPage'
+import ContactPage from '../ContactPage'
 
 describe('ContactPage', () => {
   it('renders contact form', () => {

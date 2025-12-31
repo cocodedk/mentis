@@ -5,7 +5,7 @@ import { Container, Section } from '@/components/layout'
 /**
  * 404 error page component
  */
-export function NotFound() {
+export default function NotFound() {
   return (
     <Section background="neutral-100" padding="lg">
       <Container>

@@ -11,7 +11,7 @@ import type { StaffMember } from '@/data/staff'
  * Grid of staff cards
  * Click opens Modal with full bio
  */
-export function StaffPage() {
+export default function StaffPage() {
   const [selectedStaff, setSelectedStaff] = useState<StaffMember | null>(null)
 
   return (

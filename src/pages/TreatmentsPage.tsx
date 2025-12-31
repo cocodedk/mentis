@@ -7,7 +7,7 @@ import { treatments } from '@/data/treatments'
  * Treatments overview page
  * Grid of all treatment cards
  */
-export function TreatmentsPage() {
+export default function TreatmentsPage() {
   return (
     <Section background="neutral-100" padding="lg">
       <Container>

@@ -6,7 +6,7 @@ import { Container, Section } from '@/components/layout'
  * Contact page/form
  * Contact form using Input and Textarea components
  */
-export function ContactPage() {
+export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@/test-utils/test-utils'
-import { TreatmentsPage } from '../TreatmentsPage'
+import TreatmentsPage from '../TreatmentsPage'
 
 describe('TreatmentsPage', () => {
   it('renders page title', () => {

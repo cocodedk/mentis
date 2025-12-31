@@ -9,45 +9,19 @@ import {
 } from '@/components/ui'
 import { navigationItems } from '@/data/navigation'
 
-const HomePage = lazy(() =>
-  import('@/pages/HomePage').then((m) => ({ default: m.HomePage }))
-)
-const TreatmentsPage = lazy(() =>
-  import('@/pages/TreatmentsPage').then((m) => ({ default: m.TreatmentsPage }))
-)
-const TreatmentDetailPage = lazy(() =>
-  import('@/pages/TreatmentDetailPage').then((m) => ({
-    default: m.TreatmentDetailPage,
-  }))
-)
-const StaffPage = lazy(() =>
-  import('@/pages/StaffPage').then((m) => ({ default: m.StaffPage }))
-)
-const PricingPage = lazy(() =>
-  import('@/pages/PricingPage').then((m) => ({ default: m.PricingPage }))
-)
-const PracticalInfoPage = lazy(() =>
-  import('@/pages/PracticalInfoPage').then((m) => ({
-    default: m.PracticalInfoPage,
-  }))
-)
+const HomePage = lazy(() => import('@/pages/HomePage'))
+const TreatmentsPage = lazy(() => import('@/pages/TreatmentsPage'))
+const TreatmentDetailPage = lazy(() => import('@/pages/TreatmentDetailPage'))
+const StaffPage = lazy(() => import('@/pages/StaffPage'))
+const PricingPage = lazy(() => import('@/pages/PricingPage'))
+const PracticalInfoPage = lazy(() => import('@/pages/PracticalInfoPage'))
 const PracticalInfoDetailPage = lazy(() =>
-  import('@/pages/PracticalInfoDetailPage').then((m) => ({
-    default: m.PracticalInfoDetailPage,
-  }))
+  import('@/pages/PracticalInfoDetailPage')
 )
-const LocationsPage = lazy(() =>
-  import('@/pages/LocationsPage').then((m) => ({ default: m.LocationsPage }))
-)
-const LinksPage = lazy(() =>
-  import('@/pages/LinksPage').then((m) => ({ default: m.LinksPage }))
-)
-const ContactPage = lazy(() =>
-  import('@/pages/ContactPage').then((m) => ({ default: m.ContactPage }))
-)
-const NotFound = lazy(() =>
-  import('@/pages/NotFound').then((m) => ({ default: m.NotFound }))
-)
+const LocationsPage = lazy(() => import('@/pages/LocationsPage'))
+const LinksPage = lazy(() => import('@/pages/LinksPage'))
+const ContactPage = lazy(() => import('@/pages/ContactPage'))
+const NotFound = lazy(() => import('@/pages/NotFound'))
 
 function AppContent() {
   const location = useLocation()

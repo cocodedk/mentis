@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@/test-utils/test-utils'
-import { PricingPage } from '../PricingPage'
+import PricingPage from '../PricingPage'
 
 describe('PricingPage', () => {
   it('renders pricing tables', () => {

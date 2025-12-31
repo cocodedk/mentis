@@ -2,14 +2,14 @@ import { useParams } from 'react-router-dom'
 import { Container, Section } from '@/components/layout'
 import { Accordion } from '@/components/ui'
 import { getPracticalInfoBySlug } from '@/data/practicalInfo'
-import { NotFound } from './NotFound'
+import NotFound from './NotFound'
 
 /**
  * Individual practical info page
  * Dynamic route: /praktisk-information/:slug
  * Uses Accordion for collapsible sections
  */
-export function PracticalInfoDetailPage() {
+export default function PracticalInfoDetailPage() {
   const { slug } = useParams<{ slug: string }>()
   const item = slug ? getPracticalInfoBySlug(slug) : undefined
 

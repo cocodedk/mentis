@@ -7,7 +7,7 @@ import { practicalInfoItems } from '@/data/practicalInfo'
  * Main practical information page
  * List of all practical info topics
  */
-export function PracticalInfoPage() {
+export default function PracticalInfoPage() {
   return (
     <Section background="neutral-100" padding="lg">
       <Container>

@@ -3,13 +3,13 @@ import { Button } from '@/components/ui'
 import { Container, Section } from '@/components/layout'
 import { TreatmentDetail } from '@/components/sections/TreatmentDetail'
 import { getTreatmentBySlug, type Slug } from '@/data/treatments'
-import { NotFound } from './NotFound'
+import NotFound from './NotFound'
 
 /**
  * Individual treatment page
  * Dynamic route: /behandlinger/:slug
  */
-export function TreatmentDetailPage() {
+export default function TreatmentDetailPage() {
   const { slug } = useParams<{ slug: string }>()
   const treatment = slug ? getTreatmentBySlug(slug as Slug) : undefined
 

@@ -6,7 +6,7 @@ import { PricingTable } from '@/components/sections/PricingTable'
  * Uses PricingTable component
  * Groups prices by category
  */
-export function PricingPage() {
+export default function PricingPage() {
   return (
     <Section background="neutral-100" padding="lg">
       <Container>

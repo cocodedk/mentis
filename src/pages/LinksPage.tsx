@@ -88,7 +88,7 @@ const linkCategories: LinkCategory[] = [
  * Organized by category
  * External links with proper attributes
  */
-export function LinksPage() {
+export default function LinksPage() {
   return (
     <Section background="neutral-100" padding="lg">
       <Container>

@@ -7,7 +7,7 @@ import { OpeningHours } from '@/components/sections/OpeningHours'
  * Main homepage component
  * Includes all homepage sections
  */
-export function HomePage() {
+export default function HomePage() {
   return (
     <>
       <Hero

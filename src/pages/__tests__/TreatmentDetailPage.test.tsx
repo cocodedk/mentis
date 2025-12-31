@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { TreatmentDetailPage } from '../TreatmentDetailPage'
+import TreatmentDetailPage from '../TreatmentDetailPage'
 import { MemoryRouter, Routes, Route } from 'react-router-dom'
 
 function renderWithRouter(initialEntries: string[]) {
