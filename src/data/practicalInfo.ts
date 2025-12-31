@@ -5,6 +5,7 @@ export interface PracticalInfoItem {
   content: string
   hasAccordion?: boolean
   accordionItems?: {
+    id: string
     title: string
     content: string
   }[]
@@ -41,11 +42,13 @@ export const practicalInfoItems: PracticalInfoItem[] = [
     hasAccordion: true,
     accordionItems: [
       {
+        id: 'afbud-afbudsregler',
         title: 'Afbudsregler',
         content:
           'Afbud skal ske senest to arbejdsdage før konsultationen. Ved sene afbud eller udeblivelse opkræves et gebyr på 2.500 kr. For TMS-programmer opkræves et gebyr svarende til 6 sessioner.',
       },
       {
+        id: 'afbud-hvordan-afmelder-jeg',
         title: 'Hvordan afmelder jeg?',
         content:
           'Du kan afmelde ved at ringe på telefonnummeret 81 40 93 33 i telefonens åbningstider (mandag, tirsdag, torsdag og fredag kl. 09:00–10:30) eller via e-login.',
@@ -68,14 +71,17 @@ export const practicalInfoItems: PracticalInfoItem[] = [
     hasAccordion: true,
     accordionItems: [
       {
+        id: 'akut-hjaelp-region-midtjylland',
         title: 'Region Midtjylland psykiatrisk rådgivning',
         content: 'Telefon: 78 47 04 70',
       },
       {
+        id: 'akut-hjaelp-laegevagten',
         title: 'Lægevagten',
         content: 'Telefon: 70 11 31 31',
       },
       {
+        id: 'akut-hjaelp-livslinjen',
         title: 'Livslinjen',
         content: 'Telefon: 70 20 12 01',
       },
@@ -90,21 +96,25 @@ export const practicalInfoItems: PracticalInfoItem[] = [
     hasAccordion: true,
     accordionItems: [
       {
+        id: 'cookiepolitik-noedvendige',
         title: 'Nødvendige cookies',
         content:
           'Disse cookies er nødvendige for, at hjemmesiden kan fungere korrekt. De kan ikke deaktiveres.',
       },
       {
+        id: 'cookiepolitik-funktionelle',
         title: 'Funktionelle cookies',
         content:
           'Disse cookies gør det muligt for hjemmesiden at huske dine valg og forbedre funktionaliteten.',
       },
       {
+        id: 'cookiepolitik-statistiske',
         title: 'Statistiske cookies',
         content:
           'Disse cookies hjælper os med at forstå, hvordan besøgende bruger hjemmesiden ved at indsamle anonymiseret information.',
       },
       {
+        id: 'cookiepolitik-marketing',
         title: 'Marketing cookies',
         content:
           'Disse cookies bruges til at vise relevante annoncer baseret på dine interesser.',
@@ -120,16 +130,19 @@ export const practicalInfoItems: PracticalInfoItem[] = [
     hasAccordion: true,
     accordionItems: [
       {
+        id: 'privatlivspolitik-hvilke-oplysninger',
         title: 'Hvilke oplysninger indsamler vi?',
         content:
           'Vi indsamler navn, kontaktoplysninger, CPR-nummer og sundhedshistorik. Disse oplysninger bruges til diagnose, behandling og juridisk overholdelse.',
       },
       {
+        id: 'privatlivspolitik-hvordan-bruger-vi',
         title: 'Hvordan bruger vi oplysningerne?',
         content:
           'Oplysningerne bruges til diagnose, behandling, juridisk overholdelse og kommunikation med patienter.',
       },
       {
+        id: 'privatlivspolitik-dine-rettigheder',
         title: 'Dine rettigheder',
         content:
           'Du har ret til at få indsigt i, rette og slette dine personoplysninger. Kontakt os for at udøve dine rettigheder.',

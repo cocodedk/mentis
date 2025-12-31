@@ -28,9 +28,9 @@ export default function PracticalInfoDetailPage() {
 
           {item.hasAccordion && item.accordionItems && (
             <div className="space-y-4">
-              {item.accordionItems.map((accordionItem, index) => (
+              {item.accordionItems.map((accordionItem) => (
                 <Accordion
-                  key={index}
+                  key={accordionItem.id}
                   title={accordionItem.title}
                   defaultOpen={false}
                 >

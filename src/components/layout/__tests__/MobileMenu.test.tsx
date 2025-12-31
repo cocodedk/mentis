@@ -69,6 +69,9 @@ describe('MobileMenu', () => {
 
     const parentItem = navigationItems.find((item) => item.children && item.children.length > 0)
     if (parentItem) {
+      expect(parentItem.children).toBeDefined()
+      expect(parentItem.children!.length).toBeGreaterThan(0)
+
       const expandButton = screen.getByRole('button', { name: parentItem.label })
       await userEvent.click(expandButton)
 
