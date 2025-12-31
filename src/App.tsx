@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import { Header, Footer } from '@/components/layout'
 import {
@@ -30,6 +30,17 @@ function AppContent() {
   const handleNavigate = (path: string) => {
     navigate(path)
   }
+
+  // Scroll to top when route changes
+  useEffect(() => {
+    // Scroll to top instantly on route change
+    // This ensures users see new page content instead of staying at bottom
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'auto',
+    })
+  }, [location.pathname])
 
   return (
     <div className="min-h-screen flex flex-col bg-neutral-100">
