@@ -39,7 +39,7 @@ export default function StaffPage() {
 
       {selectedStaff && (
         <Modal
-          isOpen={!!selectedStaff}
+          isOpen={true}
           onClose={() => setSelectedStaff(null)}
           title={selectedStaff.name}
           size="lg"

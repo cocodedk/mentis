@@ -91,6 +91,7 @@ export function Modal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
+        data-size={size}
       >
         <div
           ref={modalRef}

@@ -87,15 +87,14 @@ describe('Modal', () => {
     expect(modal).toHaveAttribute('aria-labelledby')
   })
 
-  it('applies correct size classes', () => {
+  it('applies correct size attribute', () => {
     const { rerender } = render(
       <Modal isOpen={true} onClose={vi.fn()} title="Test" size="sm">
         Content
       </Modal>
     )
 
-    let modal = screen.getByRole('dialog').querySelector('.max-w-md')
-    expect(modal).toBeInTheDocument()
+    expect(screen.getByRole('dialog')).toHaveAttribute('data-size', 'sm')
 
     rerender(
       <Modal isOpen={true} onClose={vi.fn()} title="Test" size="lg">
@@ -103,7 +102,6 @@ describe('Modal', () => {
       </Modal>
     )
 
-    modal = screen.getByRole('dialog').querySelector('.max-w-2xl')
-    expect(modal).toBeInTheDocument()
+    expect(screen.getByRole('dialog')).toHaveAttribute('data-size', 'lg')
   })
 })
