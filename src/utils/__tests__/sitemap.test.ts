@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { generateSitemap } from '../sitemap'
 import { treatments } from '@/data/treatments'
 import { practicalInfoItems } from '@/data/practicalInfo'

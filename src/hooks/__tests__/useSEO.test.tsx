@@ -122,7 +122,7 @@ describe('useSEO', () => {
   })
 
   it('uses provided canonical URL when available', async () => {
-    const { applySEOMetadata, getCanonicalUrl } = await import('@/utils/seo')
+    const { applySEOMetadata } = await import('@/utils/seo')
 
     const metadata: SEOMetadata = {
       title: 'Test',

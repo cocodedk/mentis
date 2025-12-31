@@ -39,6 +39,47 @@ jobs:
         env:
           BASE_URL: /mentis/
 
+      - name: Verify staff images
+        run: |
+          echo "Checking for staff images in dist/images/staff/"
+          if [ ! -d "dist/images/staff" ]; then
+            echo "ERROR: dist/images/staff directory does not exist"
+            exit 1
+          fi
+
+          echo "Found images:"
+          ls -la dist/images/staff/ || true
+
+          # Expected staff images based on staff.ts
+          expected_images=(
+            "mahmoud-ashkanian.jpg"
+            "mikkel-rune-vossen-rasmussen.jpg"
+            "phuong-le-resinia.png"
+            "bo-soendergaard-jensen.jpg"
+            "halil-oeztoprak.jpg"
+            "oezlem-mihladiz-ashkanian.jpg"
+            "tanja-krogh-brandt.jpg"
+            "mohammed-soleimani.jpg"
+            "henriette-mark.jpg"
+          )
+
+          missing_images=()
+          for img in "${expected_images[@]}"; do
+            if [ ! -f "dist/images/staff/$img" ]; then
+              missing_images+=("$img")
+              echo "ERROR: Missing image: $img"
+            else
+              echo "✓ Found: $img"
+            fi
+          done
+
+          if [ ${#missing_images[@]} -gt 0 ]; then
+            echo "ERROR: ${#missing_images[@]} staff image(s) are missing from dist/images/staff/"
+            exit 1
+          fi
+
+          echo "✓ All staff images are present"
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 

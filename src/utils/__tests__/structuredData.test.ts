@@ -251,6 +251,8 @@ describe('structuredData', () => {
       const schema = generateFAQPageSchema(item)
 
       expect(schema).toBeTruthy()
+      expect(schema).not.toBeNull()
+      if (!schema) throw new Error('Schema should not be null')
       expect(schema['@context']).toBe('https://schema.org')
       expect(schema['@type']).toBe('FAQPage')
       expect(Array.isArray(schema.mainEntity)).toBe(true)
