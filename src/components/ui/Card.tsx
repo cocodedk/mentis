@@ -42,6 +42,7 @@ export function Card({
 
   return (
     <div
+      data-testid="card-root"
       className={combinedStyles}
       onClick={onClick}
       role={onClick ? 'button' : undefined}

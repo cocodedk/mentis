@@ -15,17 +15,17 @@ describe('Card', () => {
 
   it('applies default variant styles', () => {
     render(<Card>Content</Card>)
-    const card = screen.getByText('Content').closest('div')
-    expect(card?.className).toContain('bg-white')
+    const card = screen.getByTestId('card-root')
+    expect(card.className).toContain('bg-white')
   })
 
   it('applies treatment variant', () => {
     render(<Card variant="treatment">Content</Card>)
-    const card = screen.getByText('Content').closest('div')
-    expect(card?.className).toContain('bg-white')
-    expect(card?.className).toContain('p-6')
+    const card = screen.getByTestId('card-root')
+    expect(card.className).toContain('bg-white')
+    expect(card.className).toContain('p-6')
     // hover:shadow-md should only be present when onClick is provided
-    expect(card?.className).not.toContain('hover:shadow-md')
+    expect(card.className).not.toContain('hover:shadow-md')
   })
 
   it('handles onClick when provided', async () => {
@@ -39,13 +39,13 @@ describe('Card', () => {
 
   it('does not have cursor pointer when onClick is not provided', () => {
     render(<Card>Non-clickable card</Card>)
-    const card = screen.getByText('Non-clickable card').closest('div')
-    expect(card?.className).not.toContain('cursor-pointer')
+    const card = screen.getByTestId('card-root')
+    expect(card.className).not.toContain('cursor-pointer')
   })
 
   it('applies custom className', () => {
     render(<Card className="custom-class">Content</Card>)
-    const card = screen.getByText('Content').closest('div')
-    expect(card?.className).toContain('custom-class')
+    const card = screen.getByTestId('card-root')
+    expect(card.className).toContain('custom-class')
   })
 })
