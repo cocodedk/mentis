@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import type { CookiePreferences } from '@/utils/cookies'
-import { Button } from '@/components/ui'
-import { Modal } from '@/components/ui'
+import { Button, Modal } from '@/components/ui'
 
 interface CookieSettingsProps {
   isOpen: boolean
