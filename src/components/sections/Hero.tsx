@@ -50,22 +50,25 @@ export function Hero({
         {(primaryCTA || secondaryCTA) && (
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             {primaryCTA && (
-              <Link to={primaryCTA.path}>
-                <Button variant="primary" size="lg">
-                  {primaryCTA.label}
-                </Button>
-              </Link>
+              <Button
+                as={Link}
+                to={primaryCTA.path}
+                variant="primary"
+                size="lg"
+              >
+                {primaryCTA.label}
+              </Button>
             )}
             {secondaryCTA && (
-              <Link to={secondaryCTA.path}>
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="bg-white text-primary-500 hover:bg-neutral-100"
-                >
-                  {secondaryCTA.label}
-                </Button>
-              </Link>
+              <Button
+                as={Link}
+                to={secondaryCTA.path}
+                variant="secondary"
+                size="lg"
+                className="bg-white text-primary-500 hover:bg-neutral-100"
+              >
+                {secondaryCTA.label}
+              </Button>
             )}
           </div>
         )}

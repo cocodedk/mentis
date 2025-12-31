@@ -1,10 +1,12 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import type { ButtonHTMLAttributes, ReactNode, ElementType } from 'react'
 import type { ButtonVariant, ButtonSize } from '@/types/components'
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'as'> {
   variant?: ButtonVariant
   size?: ButtonSize
   children: ReactNode
+  as?: ElementType
+  [key: string]: unknown
 }
 
 /**
@@ -17,14 +19,16 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  * </Button>
  * ```
  */
-export function Button({
-  variant = 'primary',
-  size = 'md',
-  children,
-  className = '',
-  disabled,
-  ...props
-}: ButtonProps) {
+export function Button(props: ButtonProps) {
+  const {
+    variant = 'primary',
+    size = 'md',
+    children,
+    className = '',
+    disabled,
+    as: Component = 'button',
+    ...restProps
+  } = props
   const baseStyles =
     'inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:opacity-50 disabled:cursor-not-allowed'
 
@@ -44,8 +48,24 @@ export function Button({
 
   const combinedStyles = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`
 
+  // Extract button-specific props when rendering as a link
+  const { type, ...linkProps } = restProps as ButtonHTMLAttributes<HTMLButtonElement>
+
+  if (Component !== 'button') {
+    return (
+      <Component className={combinedStyles} {...linkProps}>
+        {children}
+      </Component>
+    )
+  }
+
   return (
-    <button className={combinedStyles} disabled={disabled} {...props}>
+    <button
+      className={combinedStyles}
+      disabled={disabled}
+      type={type || 'button'}
+      {...restProps}
+    >
       {children}
     </button>
   )
