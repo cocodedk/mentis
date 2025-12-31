@@ -28,6 +28,21 @@ function normalizePhoneNumber(phone: string | null | undefined): string | null {
 }
 
 /**
+ * Generates a Google Maps search URL from location data.
+ * Combines address, postal code, and city into a full address string,
+ * then URL-encodes it for use in Google Maps search.
+ */
+function generateGoogleMapsUrl(
+  address: string,
+  postalCode: string,
+  city: string
+): string {
+  const fullAddress = `${address}, ${postalCode} ${city}, Denmark`
+  const encodedAddress = encodeURIComponent(fullAddress)
+  return `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`
+}
+
+/**
  * Find os (locations) page
  * Lists all clinic locations
  */
@@ -45,6 +60,11 @@ export default function LocationsPage() {
         <Grid cols={{ default: 1, md: 2, lg: 3 }} gap="lg">
           {locations.map((location) => {
             const normalizedPhone = normalizePhoneNumber(location.phone)
+            const googleMapsUrl = generateGoogleMapsUrl(
+              location.address,
+              location.postalCode,
+              location.city
+            )
             return (
               <Card key={location.id} variant="default">
                 <h2 className="text-h2 text-neutral-900 mb-4">
@@ -65,6 +85,17 @@ export default function LocationsPage() {
                       </a>
                     </p>
                   )}
+                  <p>
+                    <a
+                      href={googleMapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary-500 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
+                      aria-label={`Se ${location.name} på Google Maps`}
+                    >
+                      Se på Google Maps
+                    </a>
+                  </p>
                 </div>
               </Card>
             )
