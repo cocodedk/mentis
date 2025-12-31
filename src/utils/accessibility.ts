@@ -47,6 +47,12 @@ export function announceToScreenReader(
   document.body.appendChild(announcement)
 
   setTimeout(() => {
-    document.body.removeChild(announcement)
+    try {
+      if (document.body && document.body.contains(announcement)) {
+        document.body.removeChild(announcement)
+      }
+    } catch {
+      // Silently ignore errors if element or document.body is gone
+    }
   }, 1000)
 }
