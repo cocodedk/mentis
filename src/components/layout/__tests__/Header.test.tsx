@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen } from '@/test-utils/test-utils'
 import userEvent from '@testing-library/user-event'
 import { Header } from '../Header'
@@ -6,6 +6,10 @@ import { navigationItems } from '@/data/navigation'
 
 describe('Header', () => {
   const mockNavigate = vi.fn()
+
+  beforeEach(() => {
+    mockNavigate.mockClear()
+  })
 
   it('renders logo', () => {
     render(
