@@ -36,12 +36,7 @@ export function Navigation({
                 path: child.path,
               }))}
               onSelect={(selectedItem) => {
-                const childItem = item.children?.find(
-                  (c) => c.path === selectedItem.path
-                )
-                if (childItem) {
-                  handleSelect(childItem)
-                }
+                handleSelect(selectedItem as NavigationItem)
               }}
             />
           )
