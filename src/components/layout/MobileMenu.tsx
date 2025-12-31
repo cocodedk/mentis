@@ -7,7 +7,6 @@ interface MobileMenuProps {
   onClose: () => void
   items: NavigationItem[]
   currentPath?: string
-  onNavigate?: (path: string) => void
 }
 
 /**

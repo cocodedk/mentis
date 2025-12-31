@@ -90,7 +90,6 @@ export function Header({
         onClose={() => setIsMobileMenuOpen(false)}
         items={navigationItems}
         currentPath={currentPath}
-        onNavigate={handleNavigate}
       />
     </>
   )
