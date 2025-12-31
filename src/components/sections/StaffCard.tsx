@@ -19,7 +19,7 @@ export function StaffCard({ staff, onClick }: StaffCardProps) {
           <img
             src={staff.photo}
             alt={`${staff.name}, ${staff.role}`}
-            className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+            className="w-32 h-32 rounded-full mx-auto mb-4 object-cover object-[center_28%] scale-[0.675]"
           />
         ) : (
           <div

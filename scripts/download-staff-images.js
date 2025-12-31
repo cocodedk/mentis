@@ -14,6 +14,9 @@ const staffImages = {
   'bo-soendergaard-jensen': 'https://cms87257.sfstatic.io/upload_dir/pics/Bo-(1).jpg',
   'halil-oeztoprak': 'https://cms87257.sfstatic.io/upload_dir/pics/Halil-Oztopark-.jpg',
   'oezlem-mihladiz-ashkanian': 'https://cms87257.sfstatic.io/upload_dir/pics/Ozlem.jpg',
+  'tanja-krogh-brandt': 'https://cms87257.sfstatic.io/upload_dir/pics/Tanja.jpg',
+  'mohammed-soleimani': 'https://cms87257.sfstatic.io/upload_dir/pics/Mohammed-2.jpg',
+  'henriette-mark': 'https://cms87257.sfstatic.io/upload_dir/pics/Henriette2.jpg',
 }
 
 const outputDir = path.join(__dirname, '..', 'public', 'images', 'staff')
