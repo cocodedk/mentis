@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\" \"package.json\" \"*.config.{js,ts}\" \".eslintrc*\" \".prettierrc*\" \"tests/**/*\" \"**/*.test.{ts,tsx}\" \"**/*.spec.{ts,tsx}\"",
     "type-check": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",

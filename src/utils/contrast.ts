@@ -86,40 +86,39 @@ export function validateDesignSystemContrast() {
     white: '#FFFFFF',
   }
 
+  const primaryTextRatio = getContrastRatio(colors.neutral900, colors.white)
+  const secondaryTextRatio = getContrastRatio(colors.neutral600, colors.white)
+  const buttonTextRatio = getContrastRatio(colors.white, colors.primary500)
+  const neutral200Ratio = getContrastRatio(colors.neutral900, colors.neutral200)
+
   const validations = [
     {
       name: 'Primary text on white',
       foreground: colors.neutral900,
       background: colors.white,
-      ratio: getContrastRatio(colors.neutral900, colors.white),
-      passes: meetsWCAGAA(
-        getContrastRatio(colors.neutral900, colors.white)
-      ),
+      ratio: primaryTextRatio,
+      passes: meetsWCAGAA(primaryTextRatio),
     },
     {
       name: 'Secondary text on white',
       foreground: colors.neutral600,
       background: colors.white,
-      ratio: getContrastRatio(colors.neutral600, colors.white),
-      passes: meetsWCAGAA(
-        getContrastRatio(colors.neutral600, colors.white)
-      ),
+      ratio: secondaryTextRatio,
+      passes: meetsWCAGAA(secondaryTextRatio),
     },
     {
       name: 'Primary button text',
       foreground: colors.white,
       background: colors.primary500,
-      ratio: getContrastRatio(colors.white, colors.primary500),
-      passes: meetsWCAGAA(getContrastRatio(colors.white, colors.primary500)),
+      ratio: buttonTextRatio,
+      passes: meetsWCAGAA(buttonTextRatio),
     },
     {
       name: 'Text on neutral-200',
       foreground: colors.neutral900,
       background: colors.neutral200,
-      ratio: getContrastRatio(colors.neutral900, colors.neutral200),
-      passes: meetsWCAGAA(
-        getContrastRatio(colors.neutral900, colors.neutral200)
-      ),
+      ratio: neutral200Ratio,
+      passes: meetsWCAGAA(neutral200Ratio),
     },
   ]
 
