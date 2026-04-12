@@ -1,0 +1,21 @@
+# mentis
+
+> React/TypeScript web application built with Vite. Mental wellness and productivity platform.
+
+## Project
+
+- [GitHub Repository](https://github.com/cocodedk/mentis)
+- [Website](https://cocodedk.github.io/mentis/)
+- [Author](https://cocode.dk)
+
+## Source
+
+- [Components](https://github.com/cocodedk/mentis/tree/main/src/components)
+- [Pages](https://github.com/cocodedk/mentis/tree/main/src/pages)
+- [README](https://github.com/cocodedk/mentis/blob/main/README.md)
+- [CLAUDE.md](https://github.com/cocodedk/mentis/blob/main/CLAUDE.md)
+
+## Stack
+
+- React 18, TypeScript, Vite, Tailwind CSS
+- Vitest (unit tests), GitHub Pages deployment
